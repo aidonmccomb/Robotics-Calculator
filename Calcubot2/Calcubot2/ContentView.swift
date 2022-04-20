@@ -38,6 +38,13 @@ struct ContentView: View {
                 ) {
                     GearRatio()
                 }
+                MyNavigationLink(
+                    text: "Title",
+                    textColor: .blue,
+                    backGround: .green
+                ) {
+                    Text("4/20 lol")
+                }
                 
             }
         }
