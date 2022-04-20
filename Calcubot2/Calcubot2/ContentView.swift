@@ -7,10 +7,40 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct MyNavigationLink<Destination: View>: View {
+    let text: String
+    let textColor: Color
+    let backGround: Color
+    @ViewBuilder let destination: Destination
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NavigationLink(destination: destination){
+            ZStack{
+                RoundedRectangle(cornerRadius: 20)
+                    .fill(backGround)
+                    .frame(width: 150, height: 150)
+                    .padding()
+                Text(text)
+                    .foregroundColor(textColor)
+            }
+        }
+    }
+}
+
+struct ContentView: View {
+    let columns = Array(repeating: GridItem(.flexible(minimum: 150, maximum: 200)), count: 2)
+    var body: some View {
+        NavigationView {
+            LazyVGrid(columns: columns, spacing: 10) {
+                MyNavigationLink(
+                    text: "Title",
+                    textColor: .blue,
+                    backGround: .green
+                ) {
+                    GearRatio()
+                }
+                
+            }
+        }
     }
 }
 
