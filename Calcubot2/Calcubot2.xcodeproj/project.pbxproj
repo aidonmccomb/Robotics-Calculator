@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3FE677CE2810785A00994E65 /* UnitConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE677CD2810785A00994E65 /* UnitConversion.swift */; };
 		3FF76AEE280F34AD00A06AD9 /* Calcubot2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF76AED280F34AD00A06AD9 /* Calcubot2App.swift */; };
 		3FF76AF0280F34AD00A06AD9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF76AEF280F34AD00A06AD9 /* ContentView.swift */; };
 		3FF76AF2280F34B100A06AD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FF76AF1280F34B100A06AD9 /* Assets.xcassets */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3FE677CD2810785A00994E65 /* UnitConversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitConversion.swift; sourceTree = "<group>"; };
 		3FF76AEA280F34AD00A06AD9 /* Calcubot2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calcubot2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FF76AED280F34AD00A06AD9 /* Calcubot2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calcubot2App.swift; sourceTree = "<group>"; };
 		3FF76AEF280F34AD00A06AD9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				3FF76AED280F34AD00A06AD9 /* Calcubot2App.swift */,
 				3FF76AEF280F34AD00A06AD9 /* ContentView.swift */,
 				3FF76B17280F372700A06AD9 /* GearRatio.swift */,
+				3FE677CD2810785A00994E65 /* UnitConversion.swift */,
 				3FF76AF1280F34B100A06AD9 /* Assets.xcassets */,
 				3FF76AF3280F34B100A06AD9 /* Preview Content */,
 			);
@@ -262,6 +265,7 @@
 			files = (
 				3FF76B18280F372700A06AD9 /* GearRatio.swift in Sources */,
 				3FF76AF0280F34AD00A06AD9 /* ContentView.swift in Sources */,
+				3FE677CE2810785A00994E65 /* UnitConversion.swift in Sources */,
 				3FF76AEE280F34AD00A06AD9 /* Calcubot2App.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

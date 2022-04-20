@@ -13,6 +13,8 @@ struct GearRatio: View {
     @State var Answer: String = ""
     
     func Calculator() {
+        //Need Greateast commmon divisor calculator
+        // to give better answers in decimal form
         if let newIn = Float(Input), let newOut = Float(Output) {
             let Ans = newIn / newOut
             Answer = "\(Float(Ans)) : 1"
