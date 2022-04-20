@@ -14,6 +14,7 @@
 		3FF76AFF280F34B100A06AD9 /* Calcubot2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF76AFE280F34B100A06AD9 /* Calcubot2Tests.swift */; };
 		3FF76B09280F34B100A06AD9 /* Calcubot2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF76B08280F34B100A06AD9 /* Calcubot2UITests.swift */; };
 		3FF76B0B280F34B100A06AD9 /* Calcubot2UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF76B0A280F34B100A06AD9 /* Calcubot2UITestsLaunchTests.swift */; };
+		3FF76B18280F372700A06AD9 /* GearRatio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF76B17280F372700A06AD9 /* GearRatio.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		3FF76B04280F34B100A06AD9 /* Calcubot2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Calcubot2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FF76B08280F34B100A06AD9 /* Calcubot2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calcubot2UITests.swift; sourceTree = "<group>"; };
 		3FF76B0A280F34B100A06AD9 /* Calcubot2UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calcubot2UITestsLaunchTests.swift; sourceTree = "<group>"; };
+		3FF76B17280F372700A06AD9 /* GearRatio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GearRatio.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 			children = (
 				3FF76AED280F34AD00A06AD9 /* Calcubot2App.swift */,
 				3FF76AEF280F34AD00A06AD9 /* ContentView.swift */,
+				3FF76B17280F372700A06AD9 /* GearRatio.swift */,
 				3FF76AF1280F34B100A06AD9 /* Assets.xcassets */,
 				3FF76AF3280F34B100A06AD9 /* Preview Content */,
 			);
@@ -257,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FF76B18280F372700A06AD9 /* GearRatio.swift in Sources */,
 				3FF76AF0280F34AD00A06AD9 /* ContentView.swift in Sources */,
 				3FF76AEE280F34AD00A06AD9 /* Calcubot2App.swift in Sources */,
 			);
