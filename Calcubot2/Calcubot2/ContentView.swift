@@ -28,37 +28,49 @@ struct MyNavigationLink<Destination: View>: View {
 
 struct ContentView: View {
     let columns = Array(repeating: GridItem(.flexible(minimum: 150, maximum: 200)), count: 2)
+    var Overlay: some View {
+        LazyVGrid(columns: columns, spacing: 10) {
+            MyNavigationLink(
+                text: "Gear Ratio",
+                textColor: .blue,
+                backGround: .green
+            ) {
+                GearRatio()
+            }
+            MyNavigationLink(
+                text: "Unit Conversion",
+                textColor: .blue,
+                backGround: .green
+            ) {
+                UnitConversion()
+            }
+            
+        }
+    }
     var body: some View {
         NavigationView {
-            LazyVGrid(columns: columns, spacing: 10) {
-                MyNavigationLink(
-                    text: "Gear Ratio",
-                    textColor: .blue,
-                    backGround: .green
-                ) {
-                    GearRatio()
-                }
-                MyNavigationLink(
-                    text: "Unit Conversion",
-                    textColor: .blue,
-                    backGround: .green
-                ) {
-                    UnitConversion()
-                }
-                
-            }
+            Rectangle().fill(Color.pink)
+                .edgesIgnoringSafeArea(.all)
+                .overlay(Overlay)
             .navigationBarTitleDisplayMode(.automatic)
             .toolbar {
                 ToolbarItem(placement: .principal) {
-                   HStack {
-                       Text("icon")
-                       Text("Calcubot").font(.largeTitle)
-                   }
-             }
-         }
+                    HStack {
+                        Text("icon")
+                        Text("Calcubot").font(.largeTitle)
+                    }
+                }
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button {
+                        //Division
+                    } label: {
+                        Image(systemName:"pencil")
+                    }
+
+                }
+            }
             
         }
-        //.background(Color.mint)
     }
 }
 

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum distUnits: CaseIterable, CustomStringConvertible, Hashable {
+enum distUnits: CaseIterable, CustomStringConvertible {
     var description: String {
         switch self {
         case .mm : return "milimeter"
