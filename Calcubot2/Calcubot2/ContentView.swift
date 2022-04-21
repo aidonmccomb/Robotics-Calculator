@@ -58,6 +58,7 @@ struct ContentView: View {
          }
             
         }
+        //.background(Color.mint)
     }
 }
 
