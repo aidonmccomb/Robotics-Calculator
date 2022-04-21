@@ -47,6 +47,16 @@ struct ContentView: View {
                 }
                 
             }
+            .navigationBarTitleDisplayMode(.automatic)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                   HStack {
+                       Text("icon")
+                       Text("Calcubot").font(.largeTitle)
+                   }
+             }
+         }
+            
         }
     }
 }
