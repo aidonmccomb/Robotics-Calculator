@@ -32,18 +32,18 @@ struct ContentView: View {
         NavigationView {
             LazyVGrid(columns: columns, spacing: 10) {
                 MyNavigationLink(
-                    text: "Title",
+                    text: "Gear Ratio",
                     textColor: .blue,
                     backGround: .green
                 ) {
                     GearRatio()
                 }
                 MyNavigationLink(
-                    text: "Title",
+                    text: "Unit Conversion",
                     textColor: .blue,
                     backGround: .green
                 ) {
-                    Text("4/20 lol")
+                    UnitConversion()
                 }
                 
             }
