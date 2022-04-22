@@ -14,7 +14,6 @@ protocol DistUnits{
 }
 
 enum ImpDistUnits: DistUnits, CaseIterable, CustomStringConvertible {
-    
     var description: String {
         switch self {
         case .inch : return "Inch"

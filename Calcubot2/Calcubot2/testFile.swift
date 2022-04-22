@@ -48,13 +48,9 @@ struct testFile: View {
             HStack(alignment:.center, spacing: 10){
                 Text(titleOne)
                 Picker(titleOne, selection: $unitOne) {
-                    Text(String(MetDistUnits.mm.description)).tag(MetDistUnits.mm)
-                    Text(String(MetDistUnits.cm.description)).tag(MetDistUnits.cm)
-                    Text(String(MetDistUnits.dm.description)).tag(MetDistUnits.dm)
-                    Text(String(MetDistUnits.m.description)).tag(MetDistUnits.m)
-                    Text(String(MetDistUnits.de.description)).tag(MetDistUnits.de)
-                    Text(String(MetDistUnits.hm.description)).tag(MetDistUnits.hm)
-                    Text(String(MetDistUnits.mm.description)).tag(MetDistUnits.km)
+                    ForEach(MetDistUnits.allCases, id: \.description) { i in
+                        Text(String(i.description)).tag(i)
+                    }
                 }
                 
                 TextField("Value", text: $valueOne)
@@ -62,18 +58,8 @@ struct testFile: View {
             HStack(alignment:.center, spacing: 10){
                 Text(titleTwo)
                 Picker(titleTwo, selection: $unitTwo) {
-                    Text(String(ImpDistUnits.inch.description)).tag(ImpDistUnits.inch)
-                    Text(String(ImpDistUnits.foot.description)).tag(ImpDistUnits.foot)
-                    Text(String(ImpDistUnits.yard.description)).tag(ImpDistUnits.yard)
-                    Text(String(ImpDistUnits.mile.description)).tag(ImpDistUnits.mile)
-                }
-                TextField("Answer", text: $valueTwo)
-            }
-            HStack(alignment:.center, spacing: 10){
-                Text(titleTwo)
-                Picker(titleTwo, selection: $unitTwo) {
-                    ForEach(ImpDistUnits.allCases, id: \.description) { index in
-                        Text(String(ImpDistUnits.inch.description)).tag(ImpDistUnits.inch)
+                    ForEach(ImpDistUnits.allCases, id: \.description) { i in
+                        Text(String(i.description)).tag(i)
                        }
                 }
                 TextField("Answer", text: $valueTwo)

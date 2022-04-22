@@ -9,7 +9,7 @@ import SwiftUI
 
 struct UnitConversion: View {
     //State variable dump
-    //@State var pickerOne: MetDistUnits.AllCases
+    //@State var pickerOne:
     @State var titleOne: String = "Metric"
     @State var unitOne: MetDistUnits = MetDistUnits.m
     @State var valueOne: String = ""

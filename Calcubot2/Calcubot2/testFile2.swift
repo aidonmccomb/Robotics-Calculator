@@ -12,11 +12,11 @@ struct testFile2: View {
     
     var body: some View {
         VStack {
-            Picker("Units", selection: $selUnit, content: {
-                ForEach(MetDistUnits.allCases, content: {
-                    descript in Text(description.captailized)
-                })
-            })
+//            Picker("Units", selection: $selUnit, content: {
+//                ForEach(MetDistUnits.allCases, content: {
+//                    descript in Text(description.captailized)
+//                })
+//            })
         }
     }
 }
