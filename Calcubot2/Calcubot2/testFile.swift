@@ -9,7 +9,7 @@ import SwiftUI
 
 struct testFile: View {
     //State variable dump
-    //@State var pickerOne: DistUnits =
+    //@State var pickerOne: MetDistUnits.AllCases
     @State var titleOne: String = "Metric"
     @State var unitOne: MetDistUnits = MetDistUnits.m
     @State var valueOne: String = ""
@@ -47,24 +47,34 @@ struct testFile: View {
         VStack(alignment:.center, spacing: 10){
             HStack(alignment:.center, spacing: 10){
                 Text(titleOne)
-                Picker("Unit One", selection: $unitOne) {
-                    Text("Milimeters").tag(MetDistUnits.mm)
-                    Text("Centimeters").tag(MetDistUnits.cm)
-                    Text("Decimeters").tag(MetDistUnits.dm)
-                    Text("Meters").tag(MetDistUnits.m)
-                    Text("Decameters").tag(MetDistUnits.de)
-                    Text("Hectometers").tag(MetDistUnits.hm)
-                    Text("Kilometers").tag(MetDistUnits.km)
+                Picker(titleOne, selection: $unitOne) {
+                    Text(String(MetDistUnits.mm.description)).tag(MetDistUnits.mm)
+                    Text(String(MetDistUnits.cm.description)).tag(MetDistUnits.cm)
+                    Text(String(MetDistUnits.dm.description)).tag(MetDistUnits.dm)
+                    Text(String(MetDistUnits.m.description)).tag(MetDistUnits.m)
+                    Text(String(MetDistUnits.de.description)).tag(MetDistUnits.de)
+                    Text(String(MetDistUnits.hm.description)).tag(MetDistUnits.hm)
+                    Text(String(MetDistUnits.mm.description)).tag(MetDistUnits.km)
                 }
+                
                 TextField("Value", text: $valueOne)
             }
             HStack(alignment:.center, spacing: 10){
                 Text(titleTwo)
-                Picker("Unit Two", selection: $unitTwo) {
-                    Text("Inches").tag(ImpDistUnits.inch)
-                    Text("Feet").tag(ImpDistUnits.foot)
-                    Text("Yard").tag(ImpDistUnits.yard)
-                    Text("Mile").tag(ImpDistUnits.mile)
+                Picker(titleTwo, selection: $unitTwo) {
+                    Text(String(ImpDistUnits.inch.description)).tag(ImpDistUnits.inch)
+                    Text(String(ImpDistUnits.foot.description)).tag(ImpDistUnits.foot)
+                    Text(String(ImpDistUnits.yard.description)).tag(ImpDistUnits.yard)
+                    Text(String(ImpDistUnits.mile.description)).tag(ImpDistUnits.mile)
+                }
+                TextField("Answer", text: $valueTwo)
+            }
+            HStack(alignment:.center, spacing: 10){
+                Text(titleTwo)
+                Picker(titleTwo, selection: $unitTwo) {
+                    ForEach(ImpDistUnits.allCases, id: \.description) { index in
+                        Text(String(ImpDistUnits.inch.description)).tag(ImpDistUnits.inch)
+                       }
                 }
                 TextField("Answer", text: $valueTwo)
             }
