@@ -17,10 +17,10 @@ enum ImpDistUnits: DistUnits, CaseIterable, CustomStringConvertible {
     
     var description: String {
         switch self {
-        case .inch : return "inch"
-        case .foot : return "foot"
-        case .yard : return "yard"
-        case .mile : return "mile"
+        case .inch : return "Inch"
+        case .foot : return "Foot"
+        case .yard : return "Yard"
+        case .mile : return "Mile"
         }
     }
     var conversionValue: Float {
@@ -40,13 +40,13 @@ enum ImpDistUnits: DistUnits, CaseIterable, CustomStringConvertible {
 enum MetDistUnits: DistUnits, CaseIterable, CustomStringConvertible {
     var description: String {
         switch self {
-        case .mm : return "milimeter"
-        case .cm: return "centimeter"
-        case .dm: return "decimeter"
-        case .m : return "meter"
-        case .de :return "decamter"
-        case .hm :return "hectometer"
-        case .km :return "kilometer"
+        case .mm : return "Milimeter"
+        case .cm: return "Centimeter"
+        case .dm: return "Decimeter"
+        case .m : return "Meter"
+        case .de :return "Decamter"
+        case .hm :return "Hectometer"
+        case .km :return "Kilometer"
         }
     }
     var conversionValue: Float {
