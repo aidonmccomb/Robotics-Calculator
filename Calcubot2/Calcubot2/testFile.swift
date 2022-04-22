@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct UnitConversion: View {
+struct testFile: View {
     //State variable dump
     //@State var pickerOne: DistUnits =
     @State var titleOne: String = "Metric"
@@ -110,8 +110,8 @@ struct UnitConversion: View {
     }
 }
 
-struct UnitConversion_Previews: PreviewProvider {
+struct testFile_Previews: PreviewProvider {
     static var previews: some View {
-        UnitConversion()
+        testFile()
     }
 }
