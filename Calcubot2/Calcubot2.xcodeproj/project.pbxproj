@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3F935E802812DEF3002B04B1 /* testFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F935E7F2812DEF2002B04B1 /* testFile.swift */; };
 		3F935E822812DF4F002B04B1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F935E812812DF4F002B04B1 /* Constants.swift */; };
+		3F935E882812FA9D002B04B1 /* testFile2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F935E872812FA9D002B04B1 /* testFile2.swift */; };
 		3F96613A2811C48A00617361 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9661392811C48A00617361 /* Utility.swift */; };
 		3FE677CE2810785A00994E65 /* UnitConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FE677CD2810785A00994E65 /* UnitConversion.swift */; };
 		3FF76AEE280F34AD00A06AD9 /* Calcubot2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FF76AED280F34AD00A06AD9 /* Calcubot2App.swift */; };
@@ -41,6 +42,7 @@
 /* Begin PBXFileReference section */
 		3F935E7F2812DEF2002B04B1 /* testFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testFile.swift; sourceTree = "<group>"; };
 		3F935E812812DF4F002B04B1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		3F935E872812FA9D002B04B1 /* testFile2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testFile2.swift; sourceTree = "<group>"; };
 		3F9661392811C48A00617361 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		3FE677CD2810785A00994E65 /* UnitConversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitConversion.swift; sourceTree = "<group>"; };
 		3FF76AEA280F34AD00A06AD9 /* Calcubot2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calcubot2.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,6 +113,7 @@
 				3FF76B17280F372700A06AD9 /* GearRatio.swift */,
 				3FE677CD2810785A00994E65 /* UnitConversion.swift */,
 				3F935E7F2812DEF2002B04B1 /* testFile.swift */,
+				3F935E872812FA9D002B04B1 /* testFile2.swift */,
 				3FF76AF1280F34B100A06AD9 /* Assets.xcassets */,
 				3FF76AF3280F34B100A06AD9 /* Preview Content */,
 			);
@@ -276,6 +279,7 @@
 				3FF76B18280F372700A06AD9 /* GearRatio.swift in Sources */,
 				3FF76AF0280F34AD00A06AD9 /* ContentView.swift in Sources */,
 				3F935E802812DEF3002B04B1 /* testFile.swift in Sources */,
+				3F935E882812FA9D002B04B1 /* testFile2.swift in Sources */,
 				3FE677CE2810785A00994E65 /* UnitConversion.swift in Sources */,
 				3FF76AEE280F34AD00A06AD9 /* Calcubot2App.swift in Sources */,
 				3F935E822812DF4F002B04B1 /* Constants.swift in Sources */,

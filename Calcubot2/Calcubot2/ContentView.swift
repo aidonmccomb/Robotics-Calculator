@@ -49,7 +49,7 @@ struct ContentView: View {
     }
     var body: some View {
         NavigationView {
-            Rectangle().fill(Color.pink)
+            Rectangle().fill(Color.myBackGround)
                 .edgesIgnoringSafeArea(.all)
                 .overlay(Overlay)
             .navigationBarTitleDisplayMode(.automatic)
