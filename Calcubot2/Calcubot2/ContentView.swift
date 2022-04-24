@@ -18,8 +18,10 @@ struct MyNavigationLink<Destination: View>: View {
                 RoundedRectangle(cornerRadius: 20)
                     .fill(backGround)
                     .frame(width: 150, height: 150)
+                    .addBorder(textColor, width: 3, cornerRadius: 20)
                     .padding()
                 Text(text)
+                    .fontWeight(.bold)
                     .foregroundColor(textColor)
             }
         }
@@ -52,24 +54,33 @@ struct ContentView: View {
             Rectangle().fill(Color.myBackGround)
                 .edgesIgnoringSafeArea(.all)
                 .overlay(Overlay)
-            .navigationBarTitleDisplayMode(.automatic)
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    HStack {
-                        Text("icon")
-                        Text("Calcubot").font(.largeTitle)
+                .navigationBarTitleDisplayMode(.automatic)
+                .toolbar {
+                    ToolbarItem(placement: .principal) {
+                        HStack {
+                            Text("icon")
+                            Text("Calcubot").font(.largeTitle)
+                        }
+                    }
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button {
+                            //modal settings?
+                        } label: {
+                            Image(systemName:"gearshape.fill")
+                                .foregroundColor(Color.green)
+                        }
+                        
                     }
                 }
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button {
-                        //Division
-                    } label: {
-                        Image(systemName:"pencil")
-                    }
-
-                }
-            }
             
+        }
+    }
+}
+
+struct Settings: View {
+    var body: some View {
+        VStack {
+            Text("Settings")
         }
     }
 }
