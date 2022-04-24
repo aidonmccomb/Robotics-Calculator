@@ -8,100 +8,46 @@
 import SwiftUI
 
 struct testFile: View {
-    //State variable dump
-    //@State var pickerOne: MetDistUnits.AllCases
-    @State var titleOne: String = "Metric"
-    @State var unitOne: MetDistUnits = MetDistUnits.m
-    @State var valueOne: String = ""
-    @State var titleTwo: String = "Impreial"
-    @State var unitTwo: ImpDistUnits = ImpDistUnits.inch
-    @State var valueTwo: String = ""
-    
-    //operation function
-    func Convert(){
-        let Mediary = Float(valueOne)! * unitOne.conversionValue
-        
-        let Ans = Mediary / unitTwo.conversionValue
-        
-        valueTwo = String(Float(Ans))
-    }
-    //legacy button and fucntion, will be deleted later
-    func ReverseConvert(){
-        let Mediary = Float(valueTwo)! * unitTwo.conversionValue
-        
-        let Ans = Mediary / unitOne.conversionValue
-        
-        valueOne = String(Float(Ans))
-    }
-    
-    func Swap(){
-        //title swap
-        let container = String(titleTwo)
-        titleTwo =  String(titleOne)
-        titleOne = container
-        //swap pickers
-        //profit??
-    }
-    
     var body: some View {
-        VStack(alignment:.center, spacing: 10){
-            HStack(alignment:.center, spacing: 10){
-                Text(titleOne)
-                Picker(titleOne, selection: $unitOne) {
-                    ForEach(MetDistUnits.allCases, id: \.description) { i in
-                        Text(String(i.description)).tag(i)
-                    }
-                }
-                
-                TextField("Value", text: $valueOne)
+        VStack {
+            Text("Hello Caplse")
+                .fontWeight(.bold)
+                .font(.title)
+                .foregroundColor(.purple)
+                .padding()
+                .overlay(
+                    Capsule(style: .continuous)
+                        .stroke(Color.purple, style: StrokeStyle(lineWidth: 5))
+                )
+            Text("Hello Rectangle")
+                    .fontWeight(.bold)
+                    .font(.title)
+                    .foregroundColor(.purple)
+                    .padding()
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(Color.purple, lineWidth: 5)
+                    )
+            ZStack{
+                RoundedRectangle(cornerRadius: 20)
+                    .fill(.blue)
+                    .frame(width: 150, height: 150)
+                    .padding()
+                RoundedRectangle(cornerRadius: 20)
+                    .size(width: 150, height: 150)
+                    .stroke(lineWidth: 5)
+                Text("text")
+                    .foregroundColor(.red)
             }
-            HStack(alignment:.center, spacing: 10){
-                Text(titleTwo)
-                Picker(titleTwo, selection: $unitTwo) {
-                    ForEach(ImpDistUnits.allCases, id: \.description) { i in
-                        Text(String(i.description)).tag(i)
-                       }
-                }
-                TextField("Answer", text: $valueTwo)
+            ZStack{
+                RoundedRectangle(cornerRadius: 20)
+                    .fill(.blue)
+                    .frame(width: 150, height: 150)
+                    
+                    .padding()
+                Text("text")
+                    .foregroundColor(.red)
             }
-            Button {
-                Convert()
-            } label: {
-                ZStack{
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.green)
-                        .frame(width: 120, height: 40, alignment: .center)
-                    Text("Convert")
-                        .foregroundColor(Color.green)
-                        .colorInvert()
-                }
-            }
-            Button {
-                ReverseConvert()
-            } label: {
-                ZStack{
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.pink)
-                        .frame(width: 120, height: 40, alignment: .center)
-                    Text("Rev. Conv.")
-                        .foregroundColor(Color.pink)
-                        .colorInvert()
-                }
-            }
-            Button {
-                Swap()
-            } label: {
-                ZStack{
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.orange)
-                        .frame(width: 120, height: 40, alignment: .center)
-                    Text("Swap")
-                        .foregroundColor(Color.orange)
-                        .colorInvert()
-                }
-            }
-            
-            
         }
     }
 }

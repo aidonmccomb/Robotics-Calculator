@@ -36,6 +36,34 @@ enum ImpDistUnits: DistUnits, CaseIterable, CustomStringConvertible {
     case mile
 }
 
+enum ImpWeightUnits: CaseIterable, CustomStringConvertible{
+    var description: String {
+        switch self {
+            case .ounce: return "ounce"
+            case .lbs: return "pounds"
+        case .tonnes: return "tonnes"
+        }
+    }
+    case ounce
+    case lbs
+    case tonnes
+}
+
+enum MetWeightUnits: CaseIterable, CustomStringConvertible{
+    var description: String {
+        switch self {
+            case .mg: return "Miligrams"
+        case .g: return "Gram"
+        case .kg: return "Kilsogram"
+        case .ton: return "Tons"
+        }
+    }
+    case mg
+    case g
+    case kg
+    case ton
+}
+
 enum MetDistUnits: DistUnits, CaseIterable, CustomStringConvertible {
     var description: String {
         switch self {

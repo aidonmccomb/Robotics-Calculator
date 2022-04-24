@@ -7,15 +7,30 @@
 
 import SwiftUI
 
+enum Measurements: CustomStringConvertible {
+    var description: String {
+        switch self {
+        case .Distance: return "Distance"
+        case .Weight: return "Weight"
+        }
+    }
+    case Distance
+    case Weight
+}
+
 struct UnitConversion: View {
     //State variable dump
-    //@State var pickerOne:
+    @State var userChoice: Measurements = .Distance
     @State var titleOne: String = "Metric"
     @State var unitOne: MetDistUnits = MetDistUnits.m
     @State var valueOne: String = ""
     @State var titleTwo: String = "Impreial"
     @State var unitTwo: ImpDistUnits = ImpDistUnits.inch
     @State var valueTwo: String = ""
+    
+    func FunctionSwap(){
+        //place holder
+    }
     
     //operation function
     func Convert(){
@@ -45,6 +60,31 @@ struct UnitConversion: View {
     
     var body: some View {
         VStack(alignment:.center, spacing: 10){
+            HStack {
+                Button {
+                    FunctionSwap()
+                } label: {
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color.teal)
+                            .frame(width: 120, height: 40, alignment: .center)
+                        Text("Distance")
+                            .foregroundColor(Color.red)
+                    }
+                }
+                Button {
+                    FunctionSwap()
+                } label: {
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color.teal)
+                            .frame(width: 120, height: 40, alignment: .center)
+                        Text("Weight")
+                            .foregroundColor(Color.red)
+                    }
+                }
+            }
+            
             HStack(alignment:.center, spacing: 10){
                 Text(titleOne)
                 Picker(titleOne, selection: $unitOne) {
@@ -60,7 +100,7 @@ struct UnitConversion: View {
                 Picker(titleTwo, selection: $unitTwo) {
                     ForEach(ImpDistUnits.allCases, id: \.description) { i in
                         Text(String(i.description)).tag(i)
-                       }
+                    }
                 }
                 TextField("Answer", text: $valueTwo)
             }
