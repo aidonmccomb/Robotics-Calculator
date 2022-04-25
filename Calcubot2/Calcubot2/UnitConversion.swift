@@ -7,17 +7,6 @@
 
 import SwiftUI
 
-enum Measurements: CustomStringConvertible {
-    var description: String {
-        switch self {
-        case .Distance: return "Distance"
-        case .Weight: return "Weight"
-        }
-    }
-    case Distance
-    case Weight
-}
-
 struct UnitConversion: View {
     //State variable dump
     @State var userChoice: Measurements = .Distance

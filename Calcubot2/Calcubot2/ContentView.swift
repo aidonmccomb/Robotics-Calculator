@@ -64,7 +64,7 @@ struct ContentView: View {
                     }
                     ToolbarItem(placement: .navigationBarLeading) {
                         Button {
-                            //modal settings?
+                            //holder
                         } label: {
                             Image(systemName:"gearshape.fill")
                                 .foregroundColor(Color.green)
@@ -73,14 +73,6 @@ struct ContentView: View {
                     }
                 }
             
-        }
-    }
-}
-
-struct Settings: View {
-    var body: some View {
-        VStack {
-            Text("Settings")
         }
     }
 }

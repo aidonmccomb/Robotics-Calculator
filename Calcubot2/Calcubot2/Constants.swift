@@ -7,6 +7,17 @@
 
 import Foundation
 
+enum Measurements: CustomStringConvertible {
+    var description: String {
+        switch self {
+        case .Distance: return "Distance"
+        case .Weight: return "Weight"
+        }
+    }
+    case Distance
+    case Weight
+}
+
 protocol DistUnits{
     var description: String {get}
     var conversionValue: Float {get}
