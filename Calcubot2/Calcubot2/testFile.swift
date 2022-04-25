@@ -20,6 +20,8 @@ struct testFile: View {
     //swap function
     func FunctionSwap(){
         isFlipped.toggle()
+        valueOne = ""
+        valueTwo = ""
     }
     
     //operation function
@@ -27,6 +29,14 @@ struct testFile: View {
         let Mediary = Float(valueOne)! * unitOne.conversionValue
         
         let Ans = Mediary / unitTwo.conversionValue
+        
+        valueTwo = String(Float(Ans))
+    }
+    
+    func SwappedConvert(){
+        let Mediary = Float(valueOne)! * unitTwo.conversionValue
+        
+        let Ans = Mediary / unitOne.conversionValue
         
         valueTwo = String(Float(Ans))
     }
@@ -68,10 +78,22 @@ struct testFile: View {
                     }
                     TextField("Answer", text: $valueTwo)
                 }
+                Button {
+                    Convert()
+                } label: {
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color.green)
+                            .frame(width: 120, height: 40, alignment: .center)
+                        Text("Convert")
+                            .foregroundColor(Color.green)
+                            .colorInvert()
+                    }
+                }
             } else { //else statement start
                 HStack(alignment:.center, spacing: 10){
                     Text("Impreial")
-                    Picker("Impreial", selection: $unitOne) {
+                    Picker("Impreial", selection: $unitTwo) {
                         ForEach(ImpDistUnits.allCases, id: \.description) { i in
                             Text(String(i.description)).tag(i)
                         }
@@ -80,29 +102,26 @@ struct testFile: View {
                 }
                 HStack(alignment:.center, spacing: 10){
                     Text("Metric")
-                    Picker("Metric", selection: $unitTwo) {
+                    Picker("Metric", selection: $unitOne) {
                         ForEach(MetDistUnits.allCases, id: \.description) { i in
                             Text(String(i.description)).tag(i)
                         }
                     }
                     TextField("Answer", text: $valueTwo)
                 }
-            }
-            //button to all convert fucntion
-            Button {
-                Convert()
-            } label: {
-                ZStack{
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.green)
-                        .frame(width: 120, height: 40, alignment: .center)
-                    Text("Convert")
-                        .foregroundColor(Color.green)
-                        .colorInvert()
+                Button {
+                    SwappedConvert()
+                } label: {
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color.green)
+                            .frame(width: 120, height: 40, alignment: .center)
+                        Text("Convert")
+                            .foregroundColor(Color.green)
+                            .colorInvert()
+                    }
                 }
             }
-            
-            
         }
     }
 }
