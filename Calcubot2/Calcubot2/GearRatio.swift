@@ -12,16 +12,26 @@ struct GearRatio: View {
     @State var Output: String = ""
     @State var Answer: String = ""
     
-    func Calculator() {
-        //Need Greateast commmon divisor calculator
-        // to give better answers in decimal form
-        if let newIn = Float(Input), let newOut = Float(Output) {
-            let Ans = newIn / newOut
-            Answer = "\(Float(Ans)) : 1"
-        }
+    func AnswerFormatter() {
+        
+        let gcd = GCD_Calculator(a: Int(Input)!, b: Int(Output)!)
+        
+        let newInput = Int(Input)!/gcd
+        let newOutput = Int(Output)!/gcd
+        
+        Answer = "\(newInput) : \(newOutput)"
     }
     
-    var body: some View {
+    
+    func GCD_Calculator(a: Int, b: Int) -> Int{
+        if(b == 0)
+        {
+            return a;
+        }
+        return GCD_Calculator(a: b, b: a % b);
+    }
+    
+    var Overlay: some View {
         VStack{
             //insert image
             Rectangle()
@@ -36,7 +46,7 @@ struct GearRatio: View {
                 TextField("Placeholder", text: $Output)
             }
             Button {
-                Calculator()
+                AnswerFormatter()
             } label: {
                 Text("Calculate")
             }
@@ -46,6 +56,13 @@ struct GearRatio: View {
             }
             
             
+        }
+    }
+    var body: some View {
+        NavigationView {
+            Rectangle().fill(Color.mint)
+                .edgesIgnoringSafeArea(.all)
+                .overlay(Overlay)
         }
     }
 }
