@@ -9,16 +9,20 @@ import SwiftUI
 
 struct UnitConversion: View {
     //State variable dump
-    @State var userChoice: Measurements = .Distance
-    @State var titleOne: String = "Metric"
-    @State var unitOne: MetDistUnits = MetDistUnits.m
+    @State private var isFlipped = true
+    
+    @State var unitOne: MetDistUnits = MetDistUnits.cm
     @State var valueOne: String = ""
-    @State var titleTwo: String = "Impreial"
     @State var unitTwo: ImpDistUnits = ImpDistUnits.inch
     @State var valueTwo: String = ""
     
+    //swap function
     func FunctionSwap(){
-        //place holder
+        isFlipped.toggle()
+        valueOne = ""
+        valueTwo = ""
+        unitOne = MetDistUnits.cm
+        unitTwo = ImpDistUnits.inch
     }
     
     //operation function
@@ -29,27 +33,19 @@ struct UnitConversion: View {
         
         valueTwo = String(Float(Ans))
     }
-    //legacy button and fucntion, will be deleted later
-    func ReverseConvert(){
-        let Mediary = Float(valueTwo)! * unitTwo.conversionValue
+    //want to find way to get rid of this
+    func SwappedConvert(){
+        let Mediary = Float(valueOne)! * unitTwo.conversionValue
         
         let Ans = Mediary / unitOne.conversionValue
         
-        valueOne = String(Float(Ans))
-    }
-    
-    func Swap(){
-        //title swap
-        let container = String(titleTwo)
-        titleTwo =  String(titleOne)
-        titleOne = container
-        //swap pickers
-        //profit??
+        valueTwo = String(Float(Ans))
     }
     
     var body: some View {
         VStack(alignment:.center, spacing: 10){
             HStack {
+                //swap Impreial and Metric button
                 Button {
                     FunctionSwap()
                 } label: {
@@ -57,80 +53,76 @@ struct UnitConversion: View {
                         RoundedRectangle(cornerRadius: 10)
                             .fill(Color.teal)
                             .frame(width: 120, height: 40, alignment: .center)
-                        Text("Distance")
+                        Text("Swap")
                             .foregroundColor(Color.red)
                     }
                 }
+            }
+            //if statement start
+            if isFlipped {
+                HStack(alignment:.center, spacing: 10){
+                    Text("Metric")
+                    Picker("Metric", selection: $unitOne) {
+                        ForEach(MetDistUnits.allCases, id: \.description) { i in
+                            Text(String(i.description)).tag(i)
+                        }
+                    }
+                    
+                    TextField("Value", text: $valueOne)
+                }
+                HStack(alignment:.center, spacing: 10){
+                    Text("Impreial")
+                    Picker("Impreial", selection: $unitTwo) {
+                        ForEach(ImpDistUnits.allCases, id: \.description) { i in
+                            Text(String(i.description)).tag(i)
+                        }
+                    }
+                    TextField("Answer", text: $valueTwo)
+                }
                 Button {
-                    FunctionSwap()
+                    Convert()
                 } label: {
                     ZStack{
                         RoundedRectangle(cornerRadius: 10)
-                            .fill(Color.teal)
+                            .fill(Color.green)
                             .frame(width: 120, height: 40, alignment: .center)
-                        Text("Weight")
-                            .foregroundColor(Color.red)
+                        Text("Convert")
+                            .foregroundColor(Color.green)
+                            .colorInvert()
+                    }
+                }
+            } else { //else statement start
+                HStack(alignment:.center, spacing: 10){
+                    Text("Impreial")
+                    Picker("Impreial", selection: $unitTwo) {
+                        ForEach(ImpDistUnits.allCases, id: \.description) { i in
+                            Text(String(i.description)).tag(i)
+                        }
+                    }
+                    TextField("Value", text: $valueOne)
+                }
+                HStack(alignment:.center, spacing: 10){
+                    Text("Metric")
+                    Picker("Metric", selection: $unitOne) {
+                        ForEach(MetDistUnits.allCases, id: \.description) { i in
+                            Text(String(i.description)).tag(i)
+                        }
+                    }
+                    TextField("Answer", text: $valueTwo)
+                }
+                Button {
+                    SwappedConvert()
+                } label: {
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color.green)
+                            .frame(width: 120, height: 40, alignment: .center)
+                        Text("Convert")
+                            .foregroundColor(Color.green)
+                            .colorInvert()
                     }
                 }
             }
-            
-            HStack(alignment:.center, spacing: 10){
-                Text(titleOne)
-                Picker(titleOne, selection: $unitOne) {
-                    ForEach(MetDistUnits.allCases, id: \.description) { i in
-                        Text(String(i.description)).tag(i)
-                    }
-                }
-                
-                TextField("Value", text: $valueOne)
-            }
-            HStack(alignment:.center, spacing: 10){
-                Text(titleTwo)
-                Picker(titleTwo, selection: $unitTwo) {
-                    ForEach(ImpDistUnits.allCases, id: \.description) { i in
-                        Text(String(i.description)).tag(i)
-                    }
-                }
-                TextField("Answer", text: $valueTwo)
-            }
-            Button {
-                Convert()
-            } label: {
-                ZStack{
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.green)
-                        .frame(width: 120, height: 40, alignment: .center)
-                    Text("Convert")
-                        .foregroundColor(Color.green)
-                        .colorInvert()
-                }
-            }
-            Button {
-                ReverseConvert()
-            } label: {
-                ZStack{
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.pink)
-                        .frame(width: 120, height: 40, alignment: .center)
-                    Text("Rev. Conv.")
-                        .foregroundColor(Color.pink)
-                        .colorInvert()
-                }
-            }
-            Button {
-                Swap()
-            } label: {
-                ZStack{
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.orange)
-                        .frame(width: 120, height: 40, alignment: .center)
-                    Text("Swap")
-                        .foregroundColor(Color.orange)
-                        .colorInvert()
-                }
-            }
-            
-            
         }
     }
 }

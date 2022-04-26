@@ -11,7 +11,6 @@ struct testFile: View {
     //State variable dump
     @State private var isFlipped = true
     
-    @State var userChoice: Measurements = .Distance
     @State var unitOne: MetDistUnits = MetDistUnits.cm
     @State var valueOne: String = ""
     @State var unitTwo: ImpDistUnits = ImpDistUnits.inch
@@ -22,6 +21,8 @@ struct testFile: View {
         isFlipped.toggle()
         valueOne = ""
         valueTwo = ""
+        unitOne = MetDistUnits.cm
+        unitTwo = ImpDistUnits.inch
     }
     
     //operation function
@@ -32,7 +33,7 @@ struct testFile: View {
         
         valueTwo = String(Float(Ans))
     }
-    
+    //want to find way to get rid of this
     func SwappedConvert(){
         let Mediary = Float(valueOne)! * unitTwo.conversionValue
         
@@ -125,6 +126,7 @@ struct testFile: View {
         }
     }
 }
+
 struct testFile_Previews: PreviewProvider {
     static var previews: some View {
         testFile()
