@@ -55,20 +55,28 @@ struct GearRatio: View {
                 Text("Input:")
                     .foregroundColor(isShowingInputError ? .red : .black)
                 TextField("Placeholder", text: $Input)
+                    .keyboardType(.numbersAndPunctuation)
+                    .foregroundColor(Color.red)
             }
             HStack{
                 Text("Output:")
                     .foregroundColor(isShowingInputError ? .red : .black)
                 TextField("Placeholder", text: $Output)
+                    .keyboardType(.numbersAndPunctuation)
+                    .foregroundColor(Color.red)
             }
             Button {
                 AnswerFormatter()
             } label: {
                 Text("Calculate")
             }
+            //on keyboard press "Return"
+            
             HStack{
                 Text("Answer:")
                 TextField("Placeholder", text: $Answer)
+                    .keyboardType(.numberPad)
+                    .foregroundColor(Color.red)
             }
             
             
@@ -76,7 +84,7 @@ struct GearRatio: View {
     }
     var body: some View {
         NavigationView {
-            Rectangle().fill(Color.mint)
+            Rectangle().fill(Color.white)
                 .edgesIgnoringSafeArea(.all)
                 .overlay(Overlay)
         }
