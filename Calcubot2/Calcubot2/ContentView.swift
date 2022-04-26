@@ -49,6 +49,7 @@ struct ContentView: View {
             
         }
     }
+    
     var body: some View {
         NavigationView {
             Rectangle().fill(Color.myBackGround)
@@ -63,9 +64,7 @@ struct ContentView: View {
                         }
                     }
                     ToolbarItem(placement: .navigationBarLeading) {
-                        Button {
-                            //holder
-                        } label: {
+                        NavigationLink(destination: Settings()){
                             Image(systemName:"gearshape.fill")
                                 .foregroundColor(Color.green)
                         }

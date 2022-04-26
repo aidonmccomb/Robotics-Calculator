@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F8E9D1528184E7600961837 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8E9D1428184E7600961837 /* Settings.swift */; };
 		3F935E802812DEF3002B04B1 /* testFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F935E7F2812DEF2002B04B1 /* testFile.swift */; };
 		3F935E822812DF4F002B04B1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F935E812812DF4F002B04B1 /* Constants.swift */; };
 		3F935E882812FA9D002B04B1 /* testFile2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F935E872812FA9D002B04B1 /* testFile2.swift */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F8E9D1428184E7600961837 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		3F935E7F2812DEF2002B04B1 /* testFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testFile.swift; sourceTree = "<group>"; };
 		3F935E812812DF4F002B04B1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3F935E872812FA9D002B04B1 /* testFile2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testFile2.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 				3F9661392811C48A00617361 /* Utility.swift */,
 				3F935E812812DF4F002B04B1 /* Constants.swift */,
 				3FF76AEF280F34AD00A06AD9 /* ContentView.swift */,
+				3F8E9D1428184E7600961837 /* Settings.swift */,
 				3FF76B17280F372700A06AD9 /* GearRatio.swift */,
 				3FE677CD2810785A00994E65 /* UnitConversion.swift */,
 				3F935E7F2812DEF2002B04B1 /* testFile.swift */,
@@ -281,6 +284,7 @@
 				3F935E802812DEF3002B04B1 /* testFile.swift in Sources */,
 				3F935E882812FA9D002B04B1 /* testFile2.swift in Sources */,
 				3FE677CE2810785A00994E65 /* UnitConversion.swift in Sources */,
+				3F8E9D1528184E7600961837 /* Settings.swift in Sources */,
 				3FF76AEE280F34AD00A06AD9 /* Calcubot2App.swift in Sources */,
 				3F935E822812DF4F002B04B1 /* Constants.swift in Sources */,
 			);
