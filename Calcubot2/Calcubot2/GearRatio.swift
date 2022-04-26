@@ -11,13 +11,26 @@ struct GearRatio: View {
     @State var Input: String = ""
     @State var Output: String = ""
     @State var Answer: String = ""
+    @State var ifFunctionCalled: Bool = false
+    
+    var isShowingInputError: Bool{
+        return ifFunctionCalled && Input.isEmpty
+    }
     
     func AnswerFormatter() {
+        ifFunctionCalled = true
         
-        let gcd = GCD_Calculator(a: Int(Input)!, b: Int(Output)!)
+        guard let intInput = Int(Input),
+              let intOutput = Int(Output)
+        else {
+            //wipe input
+            return
+        }
         
-        let newInput = Int(Input)!/gcd
-        let newOutput = Int(Output)!/gcd
+        let gcd = GCD_Calculator(a: intInput, b: intOutput)
+        
+        let newInput = intInput / gcd
+        let newOutput = intOutput / gcd
         
         Answer = "\(newInput) : \(newOutput)"
     }
@@ -39,6 +52,7 @@ struct GearRatio: View {
                 .frame(width: 350, height: 200, alignment: .center)
             HStack{
                 Text("Input:")
+                    .foregroundColor(isShowingInputError ? .red : .black)
                 TextField("Placeholder", text: $Input)
             }
             HStack{

@@ -27,21 +27,23 @@ struct UnitConversion: View {
     
     //operation function
     func Convert(){
-        let Mediary = Float(valueOne)! * unitOne.conversionValue
+        let conversionValueOne: Float
+        let conversionValueTwo: Float
         
-        let Ans = Mediary / unitTwo.conversionValue
+        if isFlipped {
+            conversionValueOne = unitOne.conversionValue
+            conversionValueTwo = unitTwo.conversionValue
+        } else {
+            conversionValueOne = unitTwo.conversionValue
+            conversionValueTwo = unitOne.conversionValue
+        }
+        
+        let Mediary = Float(valueOne)! * conversionValueOne
+        
+        let Ans = Mediary / conversionValueTwo
         
         valueTwo = String(Float(Ans))
     }
-    //want to find way to get rid of this
-    func SwappedConvert(){
-        let Mediary = Float(valueOne)! * unitTwo.conversionValue
-        
-        let Ans = Mediary / unitOne.conversionValue
-        
-        valueTwo = String(Float(Ans))
-    }
-    
     var body: some View {
         VStack(alignment:.center, spacing: 10){
             HStack {
@@ -79,18 +81,7 @@ struct UnitConversion: View {
                     }
                     TextField("Answer", text: $valueTwo)
                 }
-                Button {
-                    Convert()
-                } label: {
-                    ZStack{
-                        RoundedRectangle(cornerRadius: 10)
-                            .fill(Color.green)
-                            .frame(width: 120, height: 40, alignment: .center)
-                        Text("Convert")
-                            .foregroundColor(Color.green)
-                            .colorInvert()
-                    }
-                }
+                
             } else { //else statement start
                 HStack(alignment:.center, spacing: 10){
                     Text("Impreial")
@@ -110,17 +101,18 @@ struct UnitConversion: View {
                     }
                     TextField("Answer", text: $valueTwo)
                 }
-                Button {
-                    SwappedConvert()
-                } label: {
-                    ZStack{
-                        RoundedRectangle(cornerRadius: 10)
-                            .fill(Color.green)
-                            .frame(width: 120, height: 40, alignment: .center)
-                        Text("Convert")
-                            .foregroundColor(Color.green)
-                            .colorInvert()
-                    }
+                
+            }
+            Button {
+                Convert()
+            } label: {
+                ZStack{
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(Color.green)
+                        .frame(width: 120, height: 40, alignment: .center)
+                    Text("Convert")
+                        .foregroundColor(Color.green)
+                        .colorInvert()
                 }
             }
         }
