@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MyNavigationLink<Destination: View>: View {
+struct RoundedRectNavLink<Destination: View>: View {
     let text: String
     let textColor: Color
     let backGround: Color
@@ -32,14 +32,14 @@ struct ContentView: View {
     let columns = Array(repeating: GridItem(.flexible(minimum: 150, maximum: 200)), count: 2)
     var Overlay: some View {
         LazyVGrid(columns: columns, spacing: 10) {
-            MyNavigationLink(
+            RoundedRectNavLink(
                 text: "Gear Ratio",
                 textColor: .blue,
                 backGround: .green
             ) {
                 GearRatio()
             }
-            MyNavigationLink(
+            RoundedRectNavLink(
                 text: "Unit Conversion",
                 textColor: .blue,
                 backGround: .green
@@ -71,7 +71,6 @@ struct ContentView: View {
                         
                     }
                 }
-            
         }
     }
 }

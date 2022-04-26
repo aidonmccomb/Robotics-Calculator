@@ -23,7 +23,8 @@ struct GearRatio: View {
         guard let intInput = Int(Input),
               let intOutput = Int(Output)
         else {
-            //wipe input
+            Input = ""
+            Output = ""
             return
         }
         
@@ -57,6 +58,7 @@ struct GearRatio: View {
             }
             HStack{
                 Text("Output:")
+                    .foregroundColor(isShowingInputError ? .red : .black)
                 TextField("Placeholder", text: $Output)
             }
             Button {

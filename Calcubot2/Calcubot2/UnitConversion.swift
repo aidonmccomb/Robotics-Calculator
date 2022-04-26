@@ -27,6 +27,12 @@ struct UnitConversion: View {
     
     //operation function
     func Convert(){
+        
+        guard let floatValOne = Float(valueOne) else {
+            valueOne = ""
+            valueTwo = ""
+            return }
+
         let conversionValueOne: Float
         let conversionValueTwo: Float
         
@@ -38,7 +44,7 @@ struct UnitConversion: View {
             conversionValueTwo = unitOne.conversionValue
         }
         
-        let Mediary = Float(valueOne)! * conversionValueOne
+        let Mediary = floatValOne * conversionValueOne
         
         let Ans = Mediary / conversionValueTwo
         
@@ -59,6 +65,7 @@ struct UnitConversion: View {
                             .foregroundColor(Color.red)
                     }
                 }
+                //Text("Slider")
             }
             //if statement start
             if isFlipped {

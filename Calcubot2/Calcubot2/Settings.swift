@@ -10,6 +10,8 @@ import SwiftUI
 struct Settings: View {
     var body: some View {
         Text("Settings")
+        //storing propreties of the users preferences
+        //Visual options mostly : High Contrast, Grey Scale, No animation, 
     }
 }
 
