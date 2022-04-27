@@ -34,15 +34,15 @@ struct ContentView: View {
         LazyVGrid(columns: columns, spacing: 10) {
             RoundedRectNavLink(
                 text: "Gear Ratio",
-                textColor: .blue,
-                backGround: .green
+                textColor: .myBorder,
+                backGround: .myButton
             ) {
                 GearRatio()
             }
             RoundedRectNavLink(
                 text: "Unit Conversion",
-                textColor: .blue,
-                backGround: .green
+                textColor: .myBorder,
+                backGround: .myButton
             ) {
                 UnitConversion()
             }
@@ -66,7 +66,7 @@ struct ContentView: View {
                     ToolbarItem(placement: .navigationBarLeading) {
                         NavigationLink(destination: Settings()){
                             Image(systemName:"gearshape.fill")
-                                .foregroundColor(Color.green)
+                                .foregroundColor(Color.myBorder)
                         }
                         
                     }

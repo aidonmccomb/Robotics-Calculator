@@ -50,7 +50,7 @@ struct UnitConversion: View {
         
         valueTwo = String(Float(Ans))
     }
-    var body: some View {
+    var overlay: some View {
         VStack(alignment:.center, spacing: 10){
             HStack {
                 //swap Impreial and Metric button
@@ -122,6 +122,13 @@ struct UnitConversion: View {
                         .colorInvert()
                 }
             }
+        }
+    }
+    var body: some View {
+        NavigationView {
+            Rectangle().fill(Color.myBackGround)
+                .edgesIgnoringSafeArea(.all)
+                .overlay(overlay)
         }
     }
 }
