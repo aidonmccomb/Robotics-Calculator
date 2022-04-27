@@ -10,8 +10,11 @@ import SwiftUI
 extension Color {
     static let myBackGround = Color("darkGrey")
     static let medGrey = Color("medGrey")
+    static let lightGrey = Color("lightGrey")
     static let myBorder = Color("jungleGreen")
     static let myButton = Color("limeGreen")
+    static let myBlue = Color("myBlue")
+    static let myOrange = Color("myOrange")
 }
 
 extension View {

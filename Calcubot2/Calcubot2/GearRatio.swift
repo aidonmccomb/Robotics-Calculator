@@ -47,36 +47,69 @@ struct GearRatio: View {
     
     var Overlay: some View {
         VStack{
-            //insert image
-            Rectangle()
-                .fill(.gray)
-                .frame(width: 350, height: 200, alignment: .center)
             HStack{
                 Text("Input:")
                     .foregroundColor(isShowingInputError ? .red : .black)
+                    .background {
+                        RoundedRectangle(cornerRadius: 5)
+                            .fill(Color.myOrange)
+                    }
+                    .padding()
                 TextField("Placeholder", text: $Input)
                     .keyboardType(.numbersAndPunctuation)
                     .foregroundColor(Color.red)
+                    .background {
+                        RoundedRectangle(cornerRadius: 5)
+                            .fill(Color.lightGrey)
+                    }
+                    .padding()
             }
             HStack{
                 Text("Output:")
                     .foregroundColor(isShowingInputError ? .red : .black)
+                    .background {
+                        RoundedRectangle(cornerRadius: 5)
+                            .fill(Color.myBlue)
+                    }
+                    .padding()
                 TextField("Placeholder", text: $Output)
                     .keyboardType(.numbersAndPunctuation)
                     .foregroundColor(Color.red)
+                    .background {
+                        RoundedRectangle(cornerRadius: 5)
+                            .fill(Color.lightGrey)
+                    }
+                    .padding()
             }
             Button {
                 AnswerFormatter()
             } label: {
                 Text("Calculate")
+                    .padding()
+                    .background {
+                        RoundedRectangle(cornerRadius: 5)
+                            .fill(Color.myButton)
+                            .addBorder(Color.myBackGround, width:5, cornerRadius: 5)
+                    }
+                    .padding()
             }
             //on keyboard press "Return"
             
             HStack{
                 Text("Answer:")
+                    .background {
+                        RoundedRectangle(cornerRadius: 5)
+                            .fill(Color.lightGrey)
+                    }
+                    .padding()
                 TextField("Placeholder", text: $Answer)
                     .keyboardType(.numberPad)
                     .foregroundColor(Color.red)
+                    .background {
+                        RoundedRectangle(cornerRadius: 5)
+                            .fill(Color.lightGrey)
+                    }
+                    .padding()
             }
             
             
@@ -84,7 +117,7 @@ struct GearRatio: View {
     }
     var body: some View {
         NavigationView {
-            Rectangle().fill(Color.white)
+            Rectangle().fill(Color.myBackGround)
                 .edgesIgnoringSafeArea(.all)
                 .overlay(Overlay)
         }
