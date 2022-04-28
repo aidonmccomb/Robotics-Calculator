@@ -16,6 +16,7 @@ struct UnitConversion: View {
     @State var unitTwo: ImpDistUnits = ImpDistUnits.inch
     @State var valueTwo: String = ""
     
+   
     //swap function
     func FunctionSwap(){
         isFlipped.toggle()
@@ -51,7 +52,7 @@ struct UnitConversion: View {
         valueTwo = String(Float(Ans))
     }
     var overlay: some View {
-        VStack(alignment:.center, spacing: 10){
+        VStack{
             HStack {
                 //swap Impreial and Metric button
                 Button {
@@ -71,6 +72,11 @@ struct UnitConversion: View {
             if isFlipped {
                 HStack(alignment:.center, spacing: 10){
                     Text("Metric")
+                        .background {
+                            RoundedRectangle(cornerRadius: 5)
+                                .fill(Color.lightGrey)
+                        }
+                        .padding()
                     Picker("Metric", selection: $unitOne) {
                         ForEach(MetDistUnits.allCases, id: \.description) { i in
                             Text(String(i.description)).tag(i)
@@ -78,35 +84,78 @@ struct UnitConversion: View {
                     }
                     
                     TextField("Value", text: $valueOne)
+                        .keyboardType(.numbersAndPunctuation)
+                        .foregroundColor(Color.red)
+                        .background {
+                            RoundedRectangle(cornerRadius: 5)
+                                .fill(Color.lightGrey)
+                        }
+                        .padding()
                 }
                 HStack(alignment:.center, spacing: 10){
                     Text("Impreial")
+                        .background {
+                            RoundedRectangle(cornerRadius: 5)
+                                .fill(Color.lightGrey)
+                        }
+                        .padding()
                     Picker("Impreial", selection: $unitTwo) {
                         ForEach(ImpDistUnits.allCases, id: \.description) { i in
                             Text(String(i.description)).tag(i)
                         }
                     }
                     TextField("Answer", text: $valueTwo)
+                        .keyboardType(.numbersAndPunctuation)
+                        .foregroundColor(Color.red)
+                        .background {
+                            RoundedRectangle(cornerRadius: 5)
+                                .fill(Color.lightGrey)
+                        }
+                        .padding()
                 }
                 
             } else { //else statement start
                 HStack(alignment:.center, spacing: 10){
                     Text("Impreial")
+                        .background {
+                            RoundedRectangle(cornerRadius: 5)
+                                .fill(Color.lightGrey)
+                        }
+                        .padding()
                     Picker("Impreial", selection: $unitTwo) {
                         ForEach(ImpDistUnits.allCases, id: \.description) { i in
                             Text(String(i.description)).tag(i)
                         }
                     }
                     TextField("Value", text: $valueOne)
+                        .keyboardType(.numbersAndPunctuation)
+                        .foregroundColor(Color.red)
+                        .background {
+                            RoundedRectangle(cornerRadius: 5)
+                                .fill(Color.lightGrey)
+                        }
+                        .padding()
                 }
                 HStack(alignment:.center, spacing: 10){
                     Text("Metric")
+                        .background {
+                            RoundedRectangle(cornerRadius: 5)
+                                .fill(Color.lightGrey)
+                        }
+                        .padding()
                     Picker("Metric", selection: $unitOne) {
                         ForEach(MetDistUnits.allCases, id: \.description) { i in
                             Text(String(i.description)).tag(i)
                         }
                     }
                     TextField("Answer", text: $valueTwo)
+                        .keyboardType(.numbersAndPunctuation)
+                        .foregroundColor(Color.red)
+                        .background {
+                            RoundedRectangle(cornerRadius: 5)
+                                .fill(Color.lightGrey)
+                        }
+                        .padding()
                 }
                 
             }
