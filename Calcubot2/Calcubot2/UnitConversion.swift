@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+//want to make it impossible to enter text into answer feild
+
 struct UnitConversion: View {
     //State variable dump
     @State private var isFlipped = true
@@ -15,7 +17,6 @@ struct UnitConversion: View {
     @State var valueOne: String = ""
     @State var unitTwo: ImpDistUnits = ImpDistUnits.inch
     @State var valueTwo: String = ""
-    
    
     //swap function
     func FunctionSwap(){
