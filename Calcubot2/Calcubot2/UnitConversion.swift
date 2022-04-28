@@ -179,6 +179,13 @@ struct UnitConversion: View {
             Rectangle().fill(Color.myBackGround)
                 .edgesIgnoringSafeArea(.all)
                 .overlay(overlay)
+                .navigationBarTitleDisplayMode(.large)
+                .toolbar {
+                    ToolbarItem(placement: .principal) {
+                            Text("Unit Conversion").font(.largeTitle)
+                                .foregroundColor(Color.lightGrey)
+                    }
+                }
         }
     }
 }

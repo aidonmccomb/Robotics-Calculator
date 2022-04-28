@@ -120,6 +120,13 @@ struct GearRatio: View {
             Rectangle().fill(Color.myBackGround)
                 .edgesIgnoringSafeArea(.all)
                 .overlay(Overlay)
+                .navigationBarTitleDisplayMode(.large)
+                .toolbar {
+                    ToolbarItem(placement: .principal) {
+                            Text("Gear Ratio Finder").font(.largeTitle)
+                                .foregroundColor(Color.lightGrey)
+                    }
+                }
         }
     }
 }

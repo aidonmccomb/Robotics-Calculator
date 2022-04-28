@@ -29,7 +29,9 @@ struct RoundedRectNavLink<Destination: View>: View {
 }
 
 struct ContentView: View {
+    
     let columns = Array(repeating: GridItem(.flexible(minimum: 150, maximum: 200)), count: 2)
+    
     var Overlay: some View {
         LazyVGrid(columns: columns, spacing: 10) {
             RoundedRectNavLink(
