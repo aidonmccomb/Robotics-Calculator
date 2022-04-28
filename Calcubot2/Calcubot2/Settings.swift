@@ -11,32 +11,40 @@ import SwiftUI
 
 //attempt #1, doesnt work allow for toggling. need to make togglable acessible within checkBoxAndTitle's scope. 
 
-//struct checkBoxAndTitle: View {
-//    var togglable: Bool
-//    let myColor: Color
-//    let myTitle: String
-//
-//    mutating func toggle(){togglable = !togglable}
-//
-//    var body: some View {
-//        HStack{
-//            Button {toggle()} label: {
-//                Image(systemName: togglable ? "checkmark.square": "square")
-//            }
-//            Text(myTitle)
-//                .foregroundColor(myColor)
-//        }
-//
-//    }
-//}
+struct checkBoxAndTitle: View {
+    @Binding var togglable: Bool
+    let myColor: Color
+    let myTitle: String
+
+    var body: some View {
+        HStack{
+            Button {togglable.toggle()} label: {
+                Image(systemName: togglable ? "checkmark.square": "square")
+            }
+            Text(myTitle)
+                .foregroundColor(myColor)
+        }
+
+    }
+}
+
+class storeableBool: ObservableObject{
+    @Published var highContrast: Bool = false {
+        didSet {
+            UserDefaults.standard.set(highContrast, forKey: "highContrast")
+        }
+    }
+    @Published var greyScale: Bool = false
+    @Published var noAnimation: Bool = false
+    
+    //UserDefaults.standard.set(true, forKey: "Key")
+}
 
 struct Settings: View {
-    //is it best practices to name Overlay with upper or lower cammel case?? the code isnt mutable but it is a var
-    @State var highContrast: Bool = false
-    @State var greyScale: Bool = false
-    @State var noAnimation: Bool = false
+
+    @ObservedObject var userPrefences = storeableBool()
     
-    var Overlay: some View {
+    var overlay: some View {
         //storing propreties of the users preferences
         //Visual options mostly : High Contrast, Grey Scale, No animation,
         VStack{
@@ -47,23 +55,14 @@ struct Settings: View {
                         .fill(Color.myBorder)
                 }
                 .foregroundColor(Color.lightGrey)
-            HStack{
-                Button {
-                    highContrast = !highContrast
-                } label: {
-                    Image(systemName: highContrast ? "checkmark.square": "square")
-                }
-                Text("High Contrast")
-                    .foregroundColor(Color.lightGrey)
-            }
-            
+            checkBoxAndTitle(togglable: $userPrefences.greyScale, myColor: Color.lightGrey, myTitle: "Grey Scale")
         }
     }
     var body: some View {
         NavigationView {
             Rectangle().fill(Color.myBackGround)
                 .edgesIgnoringSafeArea(.all)
-                .overlay(Overlay)
+                .overlay(overlay)
                 .navigationBarTitleDisplayMode(.automatic)
                 .toolbar {
                     ToolbarItem(placement: .principal) {
