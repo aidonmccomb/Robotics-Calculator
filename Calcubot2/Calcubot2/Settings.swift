@@ -15,7 +15,7 @@ struct checkBoxAndTitle: View {
     @Binding var togglable: Bool
     let myColor: Color
     let myTitle: String
-
+    
     var body: some View {
         HStack{
             Button {togglable.toggle()} label: {
@@ -24,7 +24,7 @@ struct checkBoxAndTitle: View {
             Text(myTitle)
                 .foregroundColor(myColor)
         }
-
+        
     }
 }
 
@@ -34,14 +34,20 @@ class storeableBool: ObservableObject{
             UserDefaults.standard.set(highContrast, forKey: "highContrast")
         }
     }
-    @Published var greyScale: Bool = false
-    @Published var noAnimation: Bool = false
-    
-    //UserDefaults.standard.set(true, forKey: "Key")
+    @Published var greyScale: Bool = false {
+        didSet {
+            UserDefaults.standard.set(greyScale, forKey: "greyScale")
+        }
+    }
+    @Published var noAnimation: Bool = false {
+        didSet {
+            UserDefaults.standard.set(noAnimation, forKey: "noAnimation")
+        }
+    }
 }
 
 struct Settings: View {
-
+    
     @ObservedObject var userPrefences = storeableBool()
     
     var overlay: some View {
@@ -55,7 +61,14 @@ struct Settings: View {
                         .fill(Color.myBorder)
                 }
                 .foregroundColor(Color.lightGrey)
+            checkBoxAndTitle(togglable: $userPrefences.highContrast, myColor: Color.lightGrey, myTitle: "High Contrast")
+                .padding()
+            
             checkBoxAndTitle(togglable: $userPrefences.greyScale, myColor: Color.lightGrey, myTitle: "Grey Scale")
+                .padding()
+            checkBoxAndTitle(togglable: $userPrefences.noAnimation, myColor: Color.lightGrey, myTitle: "No Animation")
+                .padding()
+            
         }
     }
     var body: some View {
