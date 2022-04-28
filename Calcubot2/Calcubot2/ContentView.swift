@@ -48,6 +48,20 @@ struct ContentView: View {
             ) {
                 UnitConversion()
             }
+            RoundedRectNavLink(
+                text: "Level",
+                textColor: .myBorder,
+                backGround: .myButton
+            ) {
+                Level()
+            }
+            RoundedRectNavLink(
+                text: "Compass",
+                textColor: .myBorder,
+                backGround: .myButton
+            ) {
+                Compass()
+            }
             
         }
     }
