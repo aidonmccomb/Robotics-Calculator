@@ -28,7 +28,7 @@ struct checkBoxAndTitle: View {
     }
 }
 
-class storeableBool: ObservableObject{
+class userSettings: ObservableObject{
     @Published var highContrast: Bool = false {
         didSet {
             UserDefaults.standard.set(highContrast, forKey: "highContrast")
@@ -48,7 +48,7 @@ class storeableBool: ObservableObject{
 
 struct Settings: View {
     
-    @ObservedObject var userPrefences = storeableBool()
+    @ObservedObject var userPrefences = userSettings()
     
     var overlay: some View {
         //storing propreties of the users preferences

@@ -6,17 +6,29 @@
 //
 
 import SwiftUI
+import CoreMotion
+
+public let motionManager = CMMotionManager()
 
 struct Level: View {
     @State var speed: Double = 180.0
     @State private var isEditing = false
     
+    
+    //need to access gyro
+    func updateLevel() {
+        
+    }
+    
     var overlay: some View {
         VStack{
-            Text("Level")
+            Text("90")
                 .bold()
                 .foregroundColor(Color.lightGrey)
-            ZStack{
+            HStack{
+                Text("180")
+                    .foregroundColor(Color.lightGrey)
+                ZStack{
                 Circle()
                     .foregroundColor(Color.white)
                     .frame(width: 300, height: 300, alignment: .center)
@@ -25,7 +37,12 @@ struct Level: View {
                     .rotationEffect(Angle(degrees: Double(speed)))
                     .frame(width: 280, height: 10, alignment: .center)
             }.padding()
+                Text(" 0 ")
+                    .foregroundColor(Color.lightGrey)
+            }
             //will be depricated once gyro functionality is added
+            Text("270")
+                .foregroundColor(Color.lightGrey)
             ZStack{
                 RoundedRectangle(cornerRadius: 10)
                     .foregroundColor(Color.myOrange)
