@@ -29,20 +29,26 @@ struct checkBoxAndTitle: View {
 }
 
 class userSettings: ObservableObject{
-    @Published var highContrast: Bool = false {
+    @Published var highContrast: Bool {
         didSet {
             UserDefaults.standard.set(highContrast, forKey: "highContrast")
         }
     }
-    @Published var greyScale: Bool = false {
+    @Published var greyScale: Bool {
         didSet {
             UserDefaults.standard.set(greyScale, forKey: "greyScale")
         }
     }
-    @Published var noAnimation: Bool = false {
+    @Published var noAnimation: Bool {
         didSet {
             UserDefaults.standard.set(noAnimation, forKey: "noAnimation")
         }
+    }
+    
+    init(highContrast: Bool, greyScale: Bool, noAnimation: Bool) {
+        self.highContrast = false
+        self.greyScale = false
+        self.noAnimation = false
     }
 }
 
