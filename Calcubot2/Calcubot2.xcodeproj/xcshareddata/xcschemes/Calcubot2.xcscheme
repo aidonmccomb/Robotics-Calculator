@@ -20,6 +20,34 @@
                ReferencedContainer = "container:Calcubot2.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "3FF76AF9280F34B100A06AD9"
+               BuildableName = "Calcubot2Tests.xctest"
+               BlueprintName = "Calcubot2Tests"
+               ReferencedContainer = "container:Calcubot2.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "3FF76B03280F34B100A06AD9"
+               BuildableName = "Calcubot2UITests.xctest"
+               BlueprintName = "Calcubot2UITests"
+               ReferencedContainer = "container:Calcubot2.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
