@@ -4,16 +4,17 @@
 //
 //  Created by Student on 2022-04-28.
 //
-
+import Foundation
 import SwiftUI
 import CoreMotion
 
-public let motionManager = CMMotionManager()
+//class motionManager:  {
+//    let motion = CMMotionManager()
+//}
 
 struct Level: View {
     @State var speed: Double = 180.0
     @State private var isEditing = false
-    
     
     //need to access gyro
     func updateLevel() {
@@ -29,14 +30,14 @@ struct Level: View {
                 Text("180")
                     .foregroundColor(Color.lightGrey)
                 ZStack{
-                Circle()
-                    .foregroundColor(Color.white)
-                    .frame(width: 300, height: 300, alignment: .center)
-                RoundedRectangle(cornerRadius: 5)
-                    .foregroundColor(Color.red)
-                    .rotationEffect(Angle(degrees: Double(speed)))
-                    .frame(width: 280, height: 10, alignment: .center)
-            }.padding()
+                    Circle()
+                        .foregroundColor(Color.white)
+                        .frame(width: 300, height: 300, alignment: .center)
+                    RoundedRectangle(cornerRadius: 5)
+                        .foregroundColor(Color.red)
+                        .rotationEffect(Angle(degrees: Double(speed)))
+                        .frame(width: 280, height: 10, alignment: .center)
+                }.padding()
                 Text(" 0 ")
                     .foregroundColor(Color.lightGrey)
             }
