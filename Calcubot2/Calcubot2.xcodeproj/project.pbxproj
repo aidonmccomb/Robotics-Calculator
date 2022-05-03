@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F77F5632821A54D00C1F7E0 /* BeltCentering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F77F5622821A54C00C1F7E0 /* BeltCentering.swift */; };
 		3F8E9D1528184E7600961837 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8E9D1428184E7600961837 /* Settings.swift */; };
 		3F935E802812DEF3002B04B1 /* testFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F935E7F2812DEF2002B04B1 /* testFile.swift */; };
 		3F935E822812DF4F002B04B1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F935E812812DF4F002B04B1 /* Constants.swift */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F77F5622821A54C00C1F7E0 /* BeltCentering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeltCentering.swift; sourceTree = "<group>"; };
 		3F8E9D1428184E7600961837 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		3F935E7F2812DEF2002B04B1 /* testFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testFile.swift; sourceTree = "<group>"; };
 		3F935E812812DF4F002B04B1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				3FF76AED280F34AD00A06AD9 /* Calcubot2App.swift */,
 				3F9661392811C48A00617361 /* Utility.swift */,
 				3F935E812812DF4F002B04B1 /* Constants.swift */,
+				3F77F5622821A54C00C1F7E0 /* BeltCentering.swift */,
 				3FF76AEF280F34AD00A06AD9 /* ContentView.swift */,
 				3FBFD2E9281B079700884ED9 /* Level.swift */,
 				3F8E9D1428184E7600961837 /* Settings.swift */,
@@ -288,6 +291,7 @@
 				3FF76B18280F372700A06AD9 /* GearRatio.swift in Sources */,
 				3FF76AF0280F34AD00A06AD9 /* ContentView.swift in Sources */,
 				3F935E802812DEF3002B04B1 /* testFile.swift in Sources */,
+				3F77F5632821A54D00C1F7E0 /* BeltCentering.swift in Sources */,
 				3F935E882812FA9D002B04B1 /* testFile2.swift in Sources */,
 				3FE677CE2810785A00994E65 /* UnitConversion.swift in Sources */,
 				3FDBF8292820364E00489ADC /* ChainLength.swift in Sources */,

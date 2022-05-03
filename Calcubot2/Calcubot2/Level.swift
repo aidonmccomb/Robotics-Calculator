@@ -62,16 +62,17 @@ struct Level: View {
     }
     
     var body: some View {
-        NavigationView {
-            Rectangle().fill(Color.myBackGround)
-                .edgesIgnoringSafeArea(.all)
-                .overlay(overlay)
-        }
+        
+        Rectangle().fill(Color.myBackGround)
+            .edgesIgnoringSafeArea(.all)
+            .overlay(overlay)
     }
 }
 
 struct Level_Previews: PreviewProvider {
     static var previews: some View {
-        Level()
+        NavigationView {
+            Level()
+        }
     }
 }

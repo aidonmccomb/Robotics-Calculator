@@ -18,38 +18,37 @@ struct checkBoxAndTitle: View {
     
     var body: some View {
         HStack{
-            Button {togglable.toggle()} label: {
-                Image(systemName: togglable ? "checkmark.square": "square")
+            Toggle(isOn: $togglable) {
+                Text(myTitle)
+                    .foregroundColor(myColor)
             }
-            Text(myTitle)
-                .foregroundColor(myColor)
         }
         
     }
 }
 
 class userSettings: ObservableObject{
-    @Published var highContrast: Bool = false {
+    @Published var highContrast: Bool {
         didSet {
             UserDefaults.standard.set(highContrast, forKey: "highContrast")
         }
     }
-    @Published var greyScale: Bool = false {
+    @Published var greyScale: Bool {
         didSet {
             UserDefaults.standard.set(greyScale, forKey: "greyScale")
         }
     }
-    @Published var noAnimation: Bool = false{
+    @Published var noAnimation: Bool {
         didSet {
             UserDefaults.standard.set(noAnimation, forKey: "noAnimation")
         }
     }
     
-//    init(highContrast: Bool, greyScale: Bool, noAnimation: Bool) {
-//        self.highContrast = false
-//        self.greyScale = false
-//        self.noAnimation = false
-//    }
+    init() {
+        self.highContrast = UserDefaults.standard.bool(forKey: "highContrast")
+        self.greyScale = UserDefaults.standard.bool(forKey: "greyScale")
+        self.noAnimation = UserDefaults.standard.bool(forKey: "noAnimation")
+    }
 }
 
 struct Settings: View {
@@ -78,26 +77,28 @@ struct Settings: View {
         }
     }
     var body: some View {
-        NavigationView {
-            Rectangle().fill(Color.myBackGround)
-                .edgesIgnoringSafeArea(.all)
-                .overlay(overlay)
-                .navigationBarTitleDisplayMode(.automatic)
-                .toolbar {
-                    ToolbarItem(placement: .principal) {
-                        HStack {
-                            Text("Settings").font(.largeTitle)
-                                .foregroundColor(Color.lightGrey)
-                        }
+        
+        Rectangle().fill(Color.myBackGround)
+            .edgesIgnoringSafeArea(.all)
+            .overlay(overlay)
+            .navigationBarTitleDisplayMode(.automatic)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    HStack {
+                        Text("Settings").font(.largeTitle)
+                            .foregroundColor(Color.lightGrey)
                     }
                 }
-        }
+                
+            }
     }
 }
 
 
 struct Settings_Previews: PreviewProvider {
     static var previews: some View {
-        Settings()
+        NavigationView {
+            Settings()
+        }
     }
 }

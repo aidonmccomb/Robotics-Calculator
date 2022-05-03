@@ -56,11 +56,11 @@ struct ContentView: View {
                 Level()
             }
             RoundedRectNavLink(
-                text: "Placeholder",
+                text: "Chain Length",
                 textColor: .myBorder,
                 backGround: .myButton
             ) {
-                Level()
+                ChainLength()
             }
             
         }

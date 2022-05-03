@@ -7,26 +7,6 @@
 
 import SwiftUI
 
-enum Chains: CustomStringConvertible, CaseIterable{
-    var description: String{
-        switch self{
-        case .twentyFive : return "25"
-        case .HtwentyFive : return "25H"
-        case .thirtyFive : return "35"
-        }
-    }
-    var pitch: Float{
-        switch self{
-        case .twentyFive: return 0.250
-        case .HtwentyFive: return 0.250
-        case .thirtyFive : return 0.375
-        }
-    }
-    case twentyFive
-    case HtwentyFive
-    case thirtyFive
-}
-
 struct ChainLength: View {
     @State var chainType: Chains = .twentyFive
     @State var centerDist: String = ""
@@ -36,6 +16,17 @@ struct ChainLength: View {
     
     func CalculateLength() {
         //got a working formula to implement
+        guard let CD: Float = Float(centerDist), let T1: Float = Float(teethOne), let T2: Float = Float(teethTwo) else {
+            return
+        }
+        
+        //CAST Method of chain length determining
+        let C = CD/chainType.pitch
+        let A = T1 + T2
+        let S = T2 - T1
+        let T = 11.6*pow(10, 0.319*S)
+        
+        links = String(2*C+(A/2)+T/C)
     }
     
     var overlay: some View{
@@ -88,23 +79,23 @@ struct ChainLength: View {
     }
     
     var body: some View {
-        NavigationView {
-            Rectangle().fill(Color.myBackGround)
-                .edgesIgnoringSafeArea(.all)
-                .overlay(overlay)
-                .navigationBarTitleDisplayMode(.large)
-                .toolbar {
-                    ToolbarItem(placement: .principal) {
-                        Text("Chain Length").font(.largeTitle)
-                            .foregroundColor(Color.lightGrey)
-                    }
+        Rectangle().fill(Color.myBackGround)
+            .edgesIgnoringSafeArea(.all)
+            .overlay(overlay)
+            .navigationBarTitleDisplayMode(.large)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("Chain Length").font(.largeTitle)
+                        .foregroundColor(Color.lightGrey)
                 }
-        }
+            }
     }
 }
 
 struct ChainLength_Previews: PreviewProvider {
     static var previews: some View {
-        ChainLength()
+        NavigationView{
+            ChainLength()
+        }
     }
 }

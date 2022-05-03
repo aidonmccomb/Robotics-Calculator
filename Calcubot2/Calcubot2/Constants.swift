@@ -106,3 +106,23 @@ enum MetDistUnits: DistUnits, CaseIterable, CustomStringConvertible {
     case hm
     case km
 }
+
+enum Chains: CustomStringConvertible, CaseIterable{
+    var description: String{
+        switch self{
+        case .twentyFive : return "25"
+        case .HtwentyFive : return "25H"
+        case .thirtyFive : return "35"
+        }
+    }
+    var pitch: Float{
+        switch self{
+        case .twentyFive: return 0.250
+        case .HtwentyFive: return 0.250
+        case .thirtyFive : return 0.375
+        }
+    }
+    case twentyFive
+    case HtwentyFive
+    case thirtyFive
+}
