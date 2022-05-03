@@ -16,17 +16,27 @@ struct ChainLength: View {
     
     func CalculateLength() {
         //got a working formula to implement
-        guard let CD: Float = Float(centerDist), let T1: Float = Float(teethOne), let T2: Float = Float(teethTwo) else {
+        guard let CD: Float = Float(centerDist), let teeth1: Float = Float(teethOne), let teeth2: Float = Float(teethTwo) else {
             return
         }
         
-        //CAST Method of chain length determining
         let C = CD/chainType.pitch
-        let A = T1 + T2
-        let S = T2 - T1
-        let T = 11.6*pow(10, 0.319*S)
         
-        links = String(2*C+(A/2)+T/C)
+        var T1, T2: Float
+        
+        if teeth1 < teeth2 {
+            T2 = Float(teeth2)
+            T1 = Float(teeth1)
+        } else {
+            T1 = Float(teeth2)
+            T2 = Float(teeth1)
+        }
+        
+        let mediary = (T2-T1)/(2*Float.pi)
+        
+        let L = (2*C)+((T1+T2)/2)+(mediary*mediary)*(1/C)
+        
+        links = String(L)
     }
     
     var overlay: some View{
@@ -75,6 +85,7 @@ struct ChainLength: View {
                     .padding()
             }
             Text(String(links))
+                .foregroundColor(Color.lightGrey)
         }
     }
     
