@@ -10,13 +10,17 @@ import SwiftUI
 struct ChainLength: View {
     @State var chainType: Chains = .twentyFive
     @State var centerDist: String = ""
-    @State var teethOne: String = ""
-    @State var teethTwo: String = ""
+    @State var sprocketOne: String = ""
+    @State var sprocketTwo: String = ""
     @State var links: String = "Links"
     
     func CalculateLength() {
         //got a working formula to implement
-        guard let CD: Float = Float(centerDist), let teeth1: Float = Float(teethOne), let teeth2: Float = Float(teethTwo) else {
+        guard let CD: Float = Float(centerDist), let teeth1: Float = Float(sprocketOne), let teeth2: Float = Float(sprocketTwo) else {
+            centerDist = ""
+            sprocketOne = ""
+            sprocketTwo = ""
+            links = "ERROR INVALID INPUT"
             return
         }
         
@@ -58,14 +62,14 @@ struct ChainLength: View {
                     RoundedRectangle(cornerRadius: 5)
                         .fill(Color.blue)
                 }
-            TextField("Tooth Count 1", text: $teethOne)
+            TextField("Tooth Count 1", text: $sprocketOne)
                 .keyboardType(.numbersAndPunctuation)
                 .foregroundColor(Color.black)
                 .background {
                     RoundedRectangle(cornerRadius: 5)
                         .fill(Color.orange)
                 }
-            TextField("Tooth Count 2", text: $teethTwo)
+            TextField("Tooth Count 2", text: $sprocketTwo)
                 .keyboardType(.numbersAndPunctuation)
                 .foregroundColor(Color.black)
                 .background {
