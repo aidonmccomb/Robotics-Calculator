@@ -53,7 +53,7 @@ struct BeltCentering: View {
 struct BeltCentering_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-        BeltCentering()
+            BeltCentering()
         }
     }
 }

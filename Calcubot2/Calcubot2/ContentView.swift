@@ -49,11 +49,11 @@ struct ContentView: View {
                 UnitConversion()
             }
             RoundedRectNavLink(
-                text: "Level",
+                text: "Belt Centerer",
                 textColor: .myBorder,
                 backGround: .myButton
             ) {
-                Level()
+                BeltCentering()
             }
             RoundedRectNavLink(
                 text: "Chain Length",

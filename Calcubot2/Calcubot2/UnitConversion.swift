@@ -17,7 +17,7 @@ struct UnitConversion: View {
     @State var valueOne: String = ""
     @State var unitTwo: ImpDistUnits = ImpDistUnits.inch
     @State var valueTwo: String = ""
-   
+    
     //swap function
     func FunctionSwap(){
         isFlipped.toggle()
@@ -34,7 +34,7 @@ struct UnitConversion: View {
             valueOne = ""
             valueTwo = ""
             return }
-
+        
         let conversionValueOne: Float
         let conversionValueTwo: Float
         
@@ -175,23 +175,24 @@ struct UnitConversion: View {
         }
     }
     var body: some View {
-        NavigationView {
-            Rectangle().fill(Color.myBackGround)
-                .edgesIgnoringSafeArea(.all)
-                .overlay(overlay)
-                .navigationBarTitleDisplayMode(.large)
-                .toolbar {
-                    ToolbarItem(placement: .principal) {
-                            Text("Unit Conversion").font(.largeTitle)
-                                .foregroundColor(Color.lightGrey)
-                    }
+        Rectangle().fill(Color.myBackGround)
+            .edgesIgnoringSafeArea(.all)
+            .overlay(overlay)
+            .navigationBarTitleDisplayMode(.large)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("Unit Conversion").font(.largeTitle)
+                        .foregroundColor(Color.lightGrey)
                 }
-        }
+            }
+        
     }
 }
 
 struct UnitConversion_Previews: PreviewProvider {
     static var previews: some View {
-        UnitConversion()
+        NavigationView {
+            UnitConversion()
+        }
     }
 }

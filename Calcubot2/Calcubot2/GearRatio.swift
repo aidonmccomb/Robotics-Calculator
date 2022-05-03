@@ -116,24 +116,24 @@ struct GearRatio: View {
         }
     }
     var body: some View {
-        NavigationView {
-            Rectangle().fill(Color.myBackGround)
-                .edgesIgnoringSafeArea(.all)
-                .overlay(Overlay)
-                .navigationBarTitleDisplayMode(.large)
-                .toolbar {
-                    ToolbarItem(placement: .principal) {
-                            Text("Gear Ratio Finder").font(.largeTitle)
-                                .foregroundColor(Color.lightGrey)
-                    }
+        Rectangle().fill(Color.myBackGround)
+            .edgesIgnoringSafeArea(.all)
+            .overlay(Overlay)
+            .navigationBarTitleDisplayMode(.large)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("Gear Ratio Finder").font(.largeTitle)
+                        .foregroundColor(Color.lightGrey)
                 }
-        }
+            }
     }
 }
 
 
 struct GearRatio_Previews: PreviewProvider {
     static var previews: some View {
-        GearRatio()
+        NavigationView {
+            GearRatio()
+        }
     }
 }
