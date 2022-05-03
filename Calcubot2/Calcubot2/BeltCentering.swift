@@ -40,23 +40,24 @@ struct BeltCentering: View {
             return
         }
         
-        let C = 0.5*(-1.57*d-1.57*D+L)
+        let C = (1/200)*(-157*d-157*D+100*L)
         
         centerDist = String(C)
+        
     }
     
     var overlay: some View{
         VStack{
-            Text("Title")
+            Text("Metric")
                 .foregroundColor(Color.lightGrey)
-            HStack {
-                Text("Chain Type")
-                Picker("Chain Type", selection: $beltType) {
-                    ForEach(Belts.allCases, id: \.description) { i in
-                        Text(String(i.description)).tag(i)
-                    }
-                }
-            }
+//            HStack {
+//                Text("Belt Type")
+//                Picker("Chain Type", selection: $beltType) {
+//                    ForEach(Belts.allCases, id: \.description) { i in
+//                        Text(String(i.description)).tag(i)
+//                    }
+//                }
+           // }
             TextField("Length of Belt", text: $length)
                 .keyboardType(.numbersAndPunctuation)
                 .foregroundColor(Color.black)
