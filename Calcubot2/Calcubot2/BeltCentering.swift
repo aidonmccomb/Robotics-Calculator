@@ -29,10 +29,71 @@ enum Belts: CustomStringConvertible, CaseIterable{
 
 
 struct BeltCentering: View {
-    var overlay: some View{
-        Text("Bruh")
-            .foregroundColor(Color.lightGrey)
+    @State var beltType: Belts = .mmfive
+    @State var length: String = ""
+    @State var pulleyOne: String = ""
+    @State var pulleyTwo: String = ""
+    @State var centerDist: String = "Center Distance"
+    
+    func CalculateCenter() {
+        guard let L = Float(length), let D = Float(pulleyOne), let d = Float(pulleyTwo) else {
+            return
+        }
+        
+        let C = 0.5*(-1.57*d-1.57*D+L)
+        
+        centerDist = String(C)
     }
+    
+    var overlay: some View{
+        VStack{
+            Text("Title")
+                .foregroundColor(Color.lightGrey)
+            HStack {
+                Text("Chain Type")
+                Picker("Chain Type", selection: $beltType) {
+                    ForEach(Belts.allCases, id: \.description) { i in
+                        Text(String(i.description)).tag(i)
+                    }
+                }
+            }
+            TextField("Length of Belt", text: $length)
+                .keyboardType(.numbersAndPunctuation)
+                .foregroundColor(Color.black)
+                .background {
+                    RoundedRectangle(cornerRadius: 5)
+                        .fill(Color.blue)
+                }
+            TextField("Tooth Count 1", text: $pulleyOne)
+                .keyboardType(.numbersAndPunctuation)
+                .foregroundColor(Color.black)
+                .background {
+                    RoundedRectangle(cornerRadius: 5)
+                        .fill(Color.orange)
+                }
+            TextField("Tooth Count 2", text: $pulleyTwo)
+                .keyboardType(.numbersAndPunctuation)
+                .foregroundColor(Color.black)
+                .background {
+                    RoundedRectangle(cornerRadius: 5)
+                        .fill(Color.red)
+                }
+            Button {
+                CalculateCenter()
+            } label: {
+                Text("Calculate")
+                    .padding()
+                    .background {
+                        RoundedRectangle(cornerRadius: 5)
+                            .fill(Color.myButton)
+                            .addBorder(Color.myBackGround, width:5, cornerRadius: 5)
+                    }
+                    .padding()
+            }
+            Text(String(centerDist))
+        }
+    }
+    
     var body: some View {
         Rectangle().fill(Color.myBackGround)
             .edgesIgnoringSafeArea(.all)
@@ -41,7 +102,7 @@ struct BeltCentering: View {
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     HStack {
-                        Text("Settings").font(.largeTitle)
+                        Text("Belt Centerer").font(.largeTitle)
                             .foregroundColor(Color.lightGrey)
                     }
                 }
