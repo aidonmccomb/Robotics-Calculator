@@ -11,17 +11,17 @@ enum Belts: CustomStringConvertible, CaseIterable{
     var description: String{
         switch self{
         case .mmfive : return "5 mil"
-        case .mmten : return "10 mil"
+        case .mmthree : return "10 mil"
         }
     }
     var pitch: Float{
         switch self{
-        case .mmfive: return 0.05
-        case .mmten: return 0.10
+        case .mmfive: return 0.05/25.4
+        case .mmthree: return 0.03/25.4
         }
     }
     case mmfive
-    case mmten
+    case mmthree
 }
 
 
@@ -33,12 +33,39 @@ struct BeltCentering: View {
     @State var centerDist: String = "Center Distance"
     
     func CalculateCenter() {
-        guard let L = Float(length), let D = Float(pulleyOne), let d = Float(pulleyTwo) else {
+        guard var L = Float(length), let D = Float(pulleyOne), let d = Float(pulleyTwo) else {
             return
         }
         
-        let C = (1/200)*(-157*d-157*D+100*L)
+        //Convert mm to in
+        L = L/25.4
         
+        //get tooth pitch (in inches)
+        let T = beltType.pitch
+        
+        //assignment of Small v. Bigger pulley
+        var P1, P2 : Float
+        
+        if D < d {
+            P1 = d
+            P2 = D
+        } else {
+            P1 = D
+            P2 = d
+        }
+        
+        //formula broken down for readability
+        let x = L-0.5*T*pow(P1+P2,2)
+        
+        let y = (2*pow(T,2)*pow(P1-P2,2))/pow(Float.pi,2)
+        
+        let A = x - y
+        
+        let B = sqrt(A)
+        
+        let C = L/4 - T/8 * (P1+P2) + 1/4 * B
+        
+        //assigment to state var
         centerDist = String(C)
         
     }
