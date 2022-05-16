@@ -62,6 +62,13 @@ struct ContentView: View {
             ) {
                 ChainLength()
             }
+            RoundedRectNavLink(
+                text: "Test File",
+                textColor: Color.red,
+                backGround: Color.myBlue
+            ) {
+                testFile2()
+            }
             
         }
     }
