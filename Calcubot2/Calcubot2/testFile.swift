@@ -52,7 +52,7 @@ struct GearRatioTest: View {
         return GCD_Calculator(a: b, b: a % b);
     }
     
-    let columns = Array(repeating: GridItem(.flexible(minimum: 150, maximum: 200)), count: 2)
+    let columns = Array(repeating: GridItem(.flexible(minimum: 150, maximum: 200)), count: 1)
     
     var Overlay: some View {
         VStack{
