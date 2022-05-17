@@ -18,7 +18,7 @@ struct GearRatioTest: View {
     @State var Output: String = ""
     @State var Answer: String = ""
     @State var ifFunctionCalled: Bool = false
-    @State var secondStage: Bool = false
+    @State var stageAddable: Bool = true
     
     var isShowingInputError: Bool{
         return ifFunctionCalled && Input.isEmpty
@@ -58,6 +58,7 @@ struct GearRatioTest: View {
         VStack{
             LazyVGrid(columns: columns){
                 
+                //start of section want repeatable
                 Text("Stage 1")
                     .foregroundColor(Color.lightGrey)
                     .background {
@@ -98,6 +99,7 @@ struct GearRatioTest: View {
                         }
                         .padding()
                 }
+                //start of section want repeatable
             }
             HStack {
                 Button {
@@ -113,14 +115,14 @@ struct GearRatioTest: View {
                         .padding()
                 }
                 Button {
-                    secondStage.toggle()
+                    stageAddable.toggle()
                 } label: {
-                    Text(secondStage ? "Add Stage" : "Remove Stage")
+                    Text(stageAddable ? "Add Stage" : "Remove Stage")
                         .foregroundColor(Color.myButton)
                         .padding()
                         .background{
                             RoundedRectangle(cornerRadius: 5)
-                                .fill(secondStage ? .blue : .red)
+                                .fill(stageAddable ? .blue : .red)
                         }
                         .padding()
                     
