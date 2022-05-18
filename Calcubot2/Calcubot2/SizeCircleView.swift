@@ -25,6 +25,9 @@ struct SizedCircleView: View{
                 }
                 .overlay{
                     RoundedRectangle(cornerRadius: 5)
+                        .scale(CGFloat(scaleFactor))
+                        .fill(.red)
+                        .frame(width: CGFloat(GeometryProxy.size.width), height: 15)
                 }
         }
     }

@@ -7,13 +7,15 @@
 
 import SwiftUI
 
-
-
 struct TestFile3: View {
     @State var Input: String = ""
     @State var Output: String = ""
     @State var Answer: String = ""
+    @State var newInput: String = ""
+    @State var newOutput: String = ""
     @State var ifFunctionCalled: Bool = false
+    @State private var isRotated = false
+    @State var isAnimated: Bool = !UserDefaults.standard.bool(forKey: "noAnimation")
     
     var isShowingInputError: Bool{
         return ifFunctionCalled && Input.isEmpty
@@ -32,8 +34,8 @@ struct TestFile3: View {
         
         let gcd = GCD_Calculator(a: intInput, b: intOutput)
         
-        let newInput = intInput / gcd
-        let newOutput = intOutput / gcd
+        newInput = String(intInput / gcd)
+        newOutput = String(intOutput / gcd)
         
         Answer = "\(newInput) : \(newOutput)"
     }
@@ -47,20 +49,51 @@ struct TestFile3: View {
         return GCD_Calculator(a: b, b: a % b);
     }
     
-    var animationView: some View {
-        HStack(spacing:0){
-        //SizedCircleView(myColor: .purple)
-        Circle()
-        //SizedCircleView(myColor: .green)
-        }
+    var myAnimation: Animation {
+        Animation.linear
+            .speed(0.1)
+            .repeatForever(autoreverses: false)
     }
+    
+    var AnimationView: some View {
+        
+        var driven, driving : Float
+        
+        driven = 6
+        driving = 1
+        //error handling for
+        
+        var total: Float {
+            driving + driven}
+        
+        return HStack(spacing:0){
+            SizedCircleView(myColor: .purple, mySize: driven, total: total )
+                .rotationEffect(Angle.degrees(isRotated ? 720 : 0))
+                .onAppear {
+                    withAnimation(myAnimation) {
+                        isRotated.toggle()
+                    }
+                }
+            SizedCircleView(myColor: .green, mySize: driving, total: total )
+                .rotationEffect(Angle.degrees(isRotated ? 360 : 0))
+                .onAppear {
+                    withAnimation(myAnimation) {
+                        isRotated.toggle()
+                    }
+                }
+        }
+        
+    }
+    
+    
+    
     
     var Overlay: some View {
         VStack{
             Rectangle()
                 .frame(width: 350, height: 200)
                 .foregroundColor(.white)
-                .overlay(animationView)
+                .overlay(AnimationView)
             
             HStack{
                 Text("Input:")
