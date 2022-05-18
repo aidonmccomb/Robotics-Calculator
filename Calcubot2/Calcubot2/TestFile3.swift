@@ -68,7 +68,7 @@ struct TestFile3: View {
         
         return HStack(spacing:0){
             SizedCircleView(myColor: .purple, mySize: driven, total: total )
-                .rotationEffect(Angle.degrees(isRotated ? 720 : 0))
+                .rotationEffect(Angle.degrees(isRotated ? 360 : 0))
                 .onAppear {
                     withAnimation(myAnimation) {
                         isRotated.toggle()

@@ -17,18 +17,17 @@ struct SizedCircleView: View{
     
     var body: some View {
         GeometryReader { GeometryProxy in
-            Circle()
+            Rectangle()
+                .size(width: GeometryProxy.size.width, height: GeometryProxy.size.width)
                 .scale(CGFloat(scaleFactor))
                 .fill(myColor)
-                .onAppear{
-                    print(GeometryProxy.size)
-                }
-                .overlay{
-                    RoundedRectangle(cornerRadius: 5)
-                        .scale(CGFloat(scaleFactor))
-                        .fill(.red)
-                        .frame(width: CGFloat(GeometryProxy.size.width), height: 15)
-                }
+                //line overlay to tell rotation
+//                .overlay(){
+//                    RoundedRectangle(cornerRadius: 5)
+//                        .scale(CGFloat(scaleFactor))
+//                        .fill(.red)
+//                        .frame(width: CGFloat(GeometryProxy.size.width), height: 15)
+//                }
         }
     }
 }
