@@ -48,12 +48,12 @@ struct SizedCircleView: View{
             Circle()
                 .scale(CGFloat(scaleFactor))
                 .rotationEffect(Angle.degrees(isRotated ? 360 : 0))
-                .overlay(){
-                    RoundedRectangle(cornerRadius: 5)
-                        .scale(CGFloat(scaleFactor))
-                        .frame(height:10)
-                        .foregroundColor(.red)
-                }
+//                .overlay(){
+//                    RoundedRectangle(cornerRadius: 5)
+//                        .scale(CGFloat(scaleFactor))
+//                        .frame(height:10)
+//                        .foregroundColor(.red)
+//                }
                 .offset(x: findOffsetX(proxyWidth: GeometryProxy.size.width))
                 .foregroundColor(myColor)
                 .onAppear {

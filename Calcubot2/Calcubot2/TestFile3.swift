@@ -7,7 +7,49 @@
 
 import SwiftUI
 
+class UserInputStages: ObservableObject {
+    var StagesAdd: Int = 0
+    
+    @Published var Input: Array<String>
+    @Published var Output: Array<String>
+    
+    @Published var Driving: Array<String>
+    @Published var Driven: Array<String>
+    
+    @Published var Answer: Array<String>
+    
+    var TotalAnswer: Float{
+        var holder: Float = 1
 
+        for answer in Answer {
+            holder = holder * Float(answer)!
+        }
+        
+        return holder
+    }
+    
+    init(){
+        self.StagesAdd += 1
+        
+        self.Input = ["Placeholder"]
+        self.Output = ["Placeholder"]
+        
+        self.Driving = ["Placeholder"]
+        self.Driven = ["Placeholder"]
+        
+        self.Answer = ["Placeholder"]
+    }
+    
+    func StageAdded(){
+        self.StagesAdd += 1
+    }
+    
+    func StageRemoved() {
+        self.StagesAdd -= 1
+    }
+
+    
+}
 
 struct TestFile3: View {
     //user input for stage one
@@ -17,10 +59,9 @@ struct TestFile3: View {
     @State var Driven: String = ""
     @State var Answer: String = ""
     
-    @State var ifFunctionCalled: Bool = false
+    @ObservedObject var userInput = UserInputStages()
     
-    //second stage
-    @State var secondStage: Bool = false
+    @State var ifFunctionCalled: Bool = false
     
     //animation
     
@@ -41,8 +82,8 @@ struct TestFile3: View {
         
         let gcd = GCD_Calculator(a: intInput, b: intOutput)
         
-        Driving = String(intInput / gcd)
-        Driven = String(intOutput / gcd)
+        userInput.Driving[userInput.StagesAdd-1] = String(intInput / gcd)
+        userInput.Driven[userInput.StagesAdd-1] = String(intOutput / gcd)
         
         Answer = "\(Driving) : \(Driven)"
     }
@@ -55,8 +96,6 @@ struct TestFile3: View {
         }
         return GCD_Calculator(a: b, b: a % b);
     }
-    
-    
     
     var AnimationView: some View {
         
@@ -136,18 +175,31 @@ struct TestFile3: View {
                         .padding()
                 }
                 Button {
-                    secondStage.toggle()
+                    userInput.StageAdded()
                 } label: {
-                    Text(secondStage ? "Remove Stage" : "Add Stage")
+                    Text("Add Stage")
                         .foregroundColor(Color.myButton)
                         .padding()
                         .background{
                             RoundedRectangle(cornerRadius: 5)
-                                .fill(secondStage ? .red : .blue)
+                                .fill(.blue)
                         }
                         .padding()
-                    
                 }
+                .disabled(userInput.StagesAdd == 3)
+                Button {
+                    userInput.StageRemoved()
+                } label: {
+                    Text("Remove Stage")
+                        .foregroundColor(Color.myButton)
+                        .padding()
+                        .background{
+                            RoundedRectangle(cornerRadius: 5)
+                                .fill(.red)
+                        }
+                        .padding()
+                }
+                .disabled(userInput.StagesAdd == 1)
             }
             //on keyboard press "Return"
             
