@@ -18,14 +18,25 @@ class UserInputStages: ObservableObject {
     
     @Published var Answer: Array<String>
     
-    var TotalAnswer: Float{
+    var TotalAnswer: String{
+        
+        if Answer[0].isEmpty {
+            return "Answer"
+        }
+        
         var holder: Float = 1
         
         for answer in Answer {
-            holder = holder * Float(answer)!
+            guard let x = Float(answer)
+                    
+            else {
+                return "Input Error"
+            }
+            
+            holder = holder * x
         }
         
-        return holder
+        return String(holder)
     }
     
     init(){
@@ -37,7 +48,7 @@ class UserInputStages: ObservableObject {
         self.Driving = ["Placeholder"]
         self.Driven = ["Placeholder"]
         
-        self.Answer = ["Placeholder"]
+        self.Answer = [""]
     }
     
     func StageAdded(){
@@ -49,7 +60,7 @@ class UserInputStages: ObservableObject {
         self.Driving.append("Placeholder")
         self.Driven.append("Placeholder")
         
-        self.Answer.append("Placeholder")
+        self.Answer.append("")
     }
     
     func StageRemoved() {
