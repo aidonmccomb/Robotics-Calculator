@@ -13,30 +13,37 @@ class UserInputStages: ObservableObject {
     @Published var Input: Array<String>
     @Published var Output: Array<String>
     
-    @Published var Driving: Array<String>
-    @Published var Driven: Array<String>
+    @Published var Answer: String
     
-    @Published var Answer: Array<String>
-    
-    var TotalAnswer: String{
+    func AnswerFormatter() {
+        //ifFunctionCalled = true
         
-        if Answer[0].isEmpty {
-            return "Answer"
+        var prodInput: Int = 1
+        
+        for num in Input {
+            prodInput = prodInput * Int(num)!
         }
         
-        var holder: Float = 1
+        var prodOutput: Int = 1
         
-        for answer in Answer {
-            guard let x = Float(answer)
-                    
-            else {
-                return "Input Error"
-            }
-            
-            holder = holder * x
+        for num in Output {
+            prodOutput = prodOutput * Int(num)!
         }
         
-        return String(holder)
+        let gcd = GCD_Calculator(a: Int(prodInput), b: Int(prodOutput))
+        
+        let Driving = String(prodInput / gcd)
+        let Driven = String(prodOutput / gcd)
+        
+        self.Answer = "\(Driving) : \(Driven)"
+    }
+    
+    func GCD_Calculator(a: Int, b: Int) -> Int{
+        if(b == 0)
+        {
+            return a;
+        }
+        return GCD_Calculator(a: b, b: a % b);
     }
     
     init(){
@@ -45,10 +52,10 @@ class UserInputStages: ObservableObject {
         self.Input = [""]
         self.Output = [""]
         
-        self.Driving = ["Placeholder"]
-        self.Driven = ["Placeholder"]
-        
-        self.Answer = [""]
+//        self.Driving = ["Placeholder"]
+//        self.Driven = ["Placeholder"]
+//
+        self.Answer = ""
     }
     
     func StageAdded(){
@@ -57,10 +64,9 @@ class UserInputStages: ObservableObject {
         self.Input.append("")
         self.Output.append("")
         
-        self.Driving.append("Placeholder")
-        self.Driven.append("Placeholder")
+//        self.Driving.append("Placeholder")
+//        self.Driven.append("Placeholder")
         
-        self.Answer.append("")
     }
     
     func StageRemoved() {
@@ -69,10 +75,9 @@ class UserInputStages: ObservableObject {
         self.Input.removeLast()
         self.Output.removeLast()
         
-        self.Driving.removeLast()
-        self.Driven.removeLast()
+//        self.Driving.removeLast()
+//        self.Driven.removeLast()
         
-        self.Answer.removeLast()
     }
     
     
@@ -89,40 +94,12 @@ struct TestFile3: View {
         return ifFunctionCalled && userInput.Input[0].isEmpty
     }
     
-    func AnswerFormatter() {
-        ifFunctionCalled = true
-        
-        guard let intInput = Int(userInput.Input[0]),
-              let intOutput = Int(userInput.Output[0])
-        else {
-            userInput.Input[0] = ""
-            userInput.Output[0] = ""
-            return
-        }
-        
-        let gcd = GCD_Calculator(a: intInput, b: intOutput)
-        
-        userInput.Driving[userInput.StagesAdd-1] = String(intInput / gcd)
-        userInput.Driven[userInput.StagesAdd-1] = String(intOutput / gcd)
-        
-        userInput.Answer[0] = "\(userInput.Driving[0]) : \(userInput.Driven[0])"
-    }
-    
-    
-    func GCD_Calculator(a: Int, b: Int) -> Int{
-        if(b == 0)
-        {
-            return a;
-        }
-        return GCD_Calculator(a: b, b: a % b);
-    }
-    
     var AnimationView: some View {
         
         var driven, driving : Float
         
         driven = 6
-        driving = 1
+        driving = 3
         //error handling for
         
         var total: Float {
@@ -190,7 +167,7 @@ struct TestFile3: View {
             VStack{
                 HStack {
                     Button {
-                        AnswerFormatter()
+                        userInput.AnswerFormatter()
                     } label: {
                         Text("Calculate")
                             .foregroundColor(Color.blue)
@@ -237,7 +214,7 @@ struct TestFile3: View {
                                 .fill(Color.lightGrey)
                         }
                         .padding()
-                    Text(String(userInput.TotalAnswer))
+                    Text(String(userInput.Answer))
                         .foregroundColor(Color.red)
                         .background {
                             RoundedRectangle(cornerRadius: 5)
