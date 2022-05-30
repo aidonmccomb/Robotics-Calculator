@@ -7,11 +7,21 @@
 
 import SwiftUI
 
+enum GearRatioErrors: Error {
+    case toFloatFailDriving
+    case toFloatFailDriven
+    case displayAnswerFail
+    case displayStageFail
+}
+
 class UserInputStages: ObservableObject {
     var StagesAdd: Int = 0
     
     @Published var Input: Array<String>
     @Published var Output: Array<String>
+    
+    @Published var Driving: String
+    @Published var Driven: String
     
     @Published var Answer: String
     
@@ -32,8 +42,8 @@ class UserInputStages: ObservableObject {
         
         let gcd = GCD_Calculator(a: Int(prodInput), b: Int(prodOutput))
         
-        let Driving = String(prodInput / gcd)
-        let Driven = String(prodOutput / gcd)
+        self.Driving = String(prodInput / gcd)
+        self.Driven = String(prodOutput / gcd)
         
         self.Answer = "\(Driving) : \(Driven)"
     }
@@ -46,26 +56,11 @@ class UserInputStages: ObservableObject {
         return GCD_Calculator(a: b, b: a % b);
     }
     
-    init(){
-        self.StagesAdd += 1
-        
-        self.Input = [""]
-        self.Output = [""]
-        
-//        self.Driving = ["Placeholder"]
-//        self.Driven = ["Placeholder"]
-//
-        self.Answer = ""
-    }
-    
     func StageAdded(){
         self.StagesAdd += 1
         
         self.Input.append("")
         self.Output.append("")
-        
-//        self.Driving.append("Placeholder")
-//        self.Driven.append("Placeholder")
         
     }
     
@@ -75,12 +70,20 @@ class UserInputStages: ObservableObject {
         self.Input.removeLast()
         self.Output.removeLast()
         
-//        self.Driving.removeLast()
-//        self.Driven.removeLast()
-        
     }
     
-    
+    init(){
+        self.StagesAdd += 1
+        
+        self.Input = [""]
+        self.Output = [""]
+        
+        self.Driving = ""
+        self.Driven = ""
+
+        self.Answer = "Final Ratio"
+    }
+
 }
 
 struct TestFile3: View {
@@ -94,33 +97,42 @@ struct TestFile3: View {
         return ifFunctionCalled && userInput.Input[0].isEmpty
     }
     
+    func GetDisplayValues(inDriven : String, inDriving : String) -> (Float, Float) {
+        if let floatDriven = Float(inDriven), let floatDriving = Float(inDriving) {
+            var scaleDriven, scaleDriving : Float
+            
+            let total = floatDriven + floatDriving
+            
+            scaleDriven = floatDriven / total
+            scaleDriving = floatDriving / total
+            
+            return ( scaleDriven, scaleDriving )
+        } else {
+            return (0.9, 0.6)
+        }
+    }
+    
     var AnimationView: some View {
-        
-        var driven, driving : Float
-        
-        driven = 6
-        driving = 3
-        //error handling for
-        
-        var total: Float {
-            driving + driven}
+        let (driven, driving) = GetDisplayValues(inDriven: userInput.Driven, inDriving: userInput.Driving)
         
         return HStack(spacing:0){
-            SizedCircleView(myColor: .purple, mySize: driven, total: total, offsetDirection: .left)
+            RotatingCircleView(fill: .purple, scale: CGFloat(driven), direction: .right)
             
-            SizedCircleView(myColor: .green, mySize: driving, total: total, offsetDirection: .right)
+            RotatingCircleView(fill: .green, scale: CGFloat(driving), direction: .left)
             
         }
     }
     
-    let columns = Array(repeating: GridItem(.flexible(minimum: 150, maximum: 200)), count: 1)
-    
     var Overlay: some View {
         VStack{
-            LazyVGrid(columns: columns){
+            VStack(){
+                Text("Final Ratio Diagram")
+                    .font(.title)
+                    
                 Rectangle()
                     .frame(width: 350, height: 200)
-                    .foregroundColor(.white)
+                    .foregroundColor(.lightGrey)
+                    .cornerRadius(10)
                     .overlay(AnimationView)
                 HStack{
                     VStack{
