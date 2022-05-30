@@ -9,11 +9,8 @@
 /* Begin PBXBuildFile section */
 		3F77F5632821A54D00C1F7E0 /* BeltCentering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F77F5622821A54C00C1F7E0 /* BeltCentering.swift */; };
 		3F8E9D1528184E7600961837 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8E9D1428184E7600961837 /* Settings.swift */; };
-		3F91953D28340E280096C779 /* TestFile3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F91953C28340E280096C779 /* TestFile3.swift */; };
 		3F91953F283410540096C779 /* RotatingCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F91953E283410540096C779 /* RotatingCircleView.swift */; };
-		3F935E802812DEF3002B04B1 /* testFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F935E7F2812DEF2002B04B1 /* testFile.swift */; };
 		3F935E822812DF4F002B04B1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F935E812812DF4F002B04B1 /* Constants.swift */; };
-		3F935E882812FA9D002B04B1 /* testFile2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F935E872812FA9D002B04B1 /* testFile2.swift */; };
 		3F96613A2811C48A00617361 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9661392811C48A00617361 /* Utility.swift */; };
 		3FBFD2EA281B079700884ED9 /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBFD2E9281B079700884ED9 /* Level.swift */; };
 		3FDBF8292820364E00489ADC /* ChainLength.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDBF8282820364E00489ADC /* ChainLength.swift */; };
@@ -48,11 +45,8 @@
 /* Begin PBXFileReference section */
 		3F77F5622821A54C00C1F7E0 /* BeltCentering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeltCentering.swift; sourceTree = "<group>"; };
 		3F8E9D1428184E7600961837 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
-		3F91953C28340E280096C779 /* TestFile3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFile3.swift; sourceTree = "<group>"; };
 		3F91953E283410540096C779 /* RotatingCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotatingCircleView.swift; sourceTree = "<group>"; };
-		3F935E7F2812DEF2002B04B1 /* testFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testFile.swift; sourceTree = "<group>"; };
 		3F935E812812DF4F002B04B1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		3F935E872812FA9D002B04B1 /* testFile2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testFile2.swift; sourceTree = "<group>"; };
 		3F9661392811C48A00617361 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		3FBFD2E9281B079700884ED9 /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		3FDBF8282820364E00489ADC /* ChainLength.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChainLength.swift; sourceTree = "<group>"; };
@@ -128,9 +122,6 @@
 				3FF76B17280F372700A06AD9 /* GearRatio.swift */,
 				3FDBF8282820364E00489ADC /* ChainLength.swift */,
 				3FE677CD2810785A00994E65 /* UnitConversion.swift */,
-				3F935E7F2812DEF2002B04B1 /* testFile.swift */,
-				3F935E872812FA9D002B04B1 /* testFile2.swift */,
-				3F91953C28340E280096C779 /* TestFile3.swift */,
 				3F91953E283410540096C779 /* RotatingCircleView.swift */,
 				3FF76AF1280F34B100A06AD9 /* Assets.xcassets */,
 				3FF76AF3280F34B100A06AD9 /* Preview Content */,
@@ -296,14 +287,11 @@
 				3F96613A2811C48A00617361 /* Utility.swift in Sources */,
 				3FF76B18280F372700A06AD9 /* GearRatio.swift in Sources */,
 				3FF76AF0280F34AD00A06AD9 /* ContentView.swift in Sources */,
-				3F935E802812DEF3002B04B1 /* testFile.swift in Sources */,
 				3F77F5632821A54D00C1F7E0 /* BeltCentering.swift in Sources */,
 				3F91953F283410540096C779 /* RotatingCircleView.swift in Sources */,
-				3F935E882812FA9D002B04B1 /* testFile2.swift in Sources */,
 				3FE677CE2810785A00994E65 /* UnitConversion.swift in Sources */,
 				3FDBF8292820364E00489ADC /* ChainLength.swift in Sources */,
 				3F8E9D1528184E7600961837 /* Settings.swift in Sources */,
-				3F91953D28340E280096C779 /* TestFile3.swift in Sources */,
 				3FF76AEE280F34AD00A06AD9 /* Calcubot2App.swift in Sources */,
 				3FBFD2EA281B079700884ED9 /* Level.swift in Sources */,
 				3F935E822812DF4F002B04B1 /* Constants.swift in Sources */,

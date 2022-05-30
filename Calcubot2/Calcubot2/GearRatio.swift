@@ -12,8 +12,6 @@ struct GearRatio: View {
     
     @State var ifFunctionCalled: Bool = false
     
-    //animation
-    
     var isShowingInputError: Bool{
         return ifFunctionCalled && userInput.Input[0].isEmpty
     }
