@@ -7,10 +7,6 @@
 
 import SwiftUI
 
-
-
-
-
 struct RotatingCircleView_Previews: PreviewProvider {
     static var previews: some View {
         HStack(spacing: 0) {

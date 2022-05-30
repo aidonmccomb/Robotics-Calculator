@@ -26,8 +26,11 @@ class UserInputStages: ObservableObject {
         
         var prodInput: Int = 1
         
+        //needs error handling
+        
         for num in Input {
             prodInput = prodInput * Int(num)!
+
         }
         
         var prodOutput: Int = 1
