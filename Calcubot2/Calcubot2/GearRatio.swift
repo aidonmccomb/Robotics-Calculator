@@ -8,113 +8,157 @@
 import SwiftUI
 
 struct GearRatio: View {
-    @State var Input: String = ""
-    @State var Output: String = ""
-    @State var Answer: String = ""
+    @ObservedObject var userInput = UserInputStages()
+    
     @State var ifFunctionCalled: Bool = false
     
+    //animation
+    
     var isShowingInputError: Bool{
-        return ifFunctionCalled && Input.isEmpty
+        return ifFunctionCalled && userInput.Input[0].isEmpty
     }
     
-    func AnswerFormatter() {
-        ifFunctionCalled = true
-        
-        guard let intInput = Int(Input),
-              let intOutput = Int(Output)
-        else {
-            Input = ""
-            Output = ""
-            return
+    func GetDisplayValues(inDriven : String, inDriving : String) -> (Float, Float) {
+        if let floatDriven = Float(inDriven), let floatDriving = Float(inDriving) {
+            var scaleDriven, scaleDriving : Float
+            
+            let total = floatDriven + floatDriving
+            
+            scaleDriven = floatDriven / total
+            scaleDriving = floatDriving / total
+            
+            return ( scaleDriven, scaleDriving )
+        } else {
+            return (0.9, 0.6)
         }
-        
-        let gcd = GCD_Calculator(a: intInput, b: intOutput)
-        
-        let newInput = intInput / gcd
-        let newOutput = intOutput / gcd
-        
-        Answer = "\(newInput) : \(newOutput)"
     }
     
-    
-    func GCD_Calculator(a: Int, b: Int) -> Int{
-        if(b == 0)
-        {
-            return a;
+    var AnimationView: some View {
+        let (driven, driving) = GetDisplayValues(inDriven: userInput.Driven, inDriving: userInput.Driving)
+        
+        return HStack(spacing:0){
+            RotatingCircleView(fill: .purple, scale: CGFloat(driven), direction: .right)
+            
+            RotatingCircleView(fill: .green, scale: CGFloat(driving), direction: .left)
+            
         }
-        return GCD_Calculator(a: b, b: a % b);
     }
     
     var Overlay: some View {
         VStack{
-            HStack{
-                Text("Input:")
-                    .foregroundColor(isShowingInputError ? .red : .black)
-                    .background {
-                        RoundedRectangle(cornerRadius: 5)
-                            .fill(Color.myOrange)
+            VStack(){
+                Text("Final Ratio Diagram")
+                    .font(.title)
+                    
+                Rectangle()
+                    .frame(width: 350, height: 200)
+                    .foregroundColor(.lightGrey)
+                    .cornerRadius(10)
+                    .overlay(AnimationView)
+                HStack{
+                    VStack{
+                        Text("Input:")
+                            .foregroundColor(isShowingInputError ? .red : .black)
+                            .background {
+                                RoundedRectangle(cornerRadius: 5)
+                                    .fill(Color.myOrange)
+                            }
+                            .padding()
+                        Text("Output:")
+                            .foregroundColor(isShowingInputError ? .red : .black)
+                            .background {
+                                RoundedRectangle(cornerRadius: 5)
+                                    .fill(Color.myBlue)
+                            }
+                            .padding()
                     }
-                    .padding()
-                TextField("Placeholder", text: $Input)
-                    .keyboardType(.numbersAndPunctuation)
-                    .foregroundColor(Color.red)
-                    .background {
-                        RoundedRectangle(cornerRadius: 5)
-                            .fill(Color.lightGrey)
+                    ForEach(0..<userInput.StagesAdd, id: \.self) { index in
+                        VStack{
+                            TextField("Placeholder", text: $userInput.Input[index])
+                                .keyboardType(.numbersAndPunctuation)
+                                .foregroundColor(Color.red)
+                                .background {
+                                    RoundedRectangle(cornerRadius: 5)
+                                        .fill(Color.lightGrey)
+                                }
+                                .padding()
+                            TextField("Placeholder", text: $userInput.Output[index])
+                                .keyboardType(.numbersAndPunctuation)
+                                .foregroundColor(Color.red)
+                                .background {
+                                    RoundedRectangle(cornerRadius: 5)
+                                        .fill(Color.lightGrey)
+                                }
+                                .padding()
+                        }
                     }
-                    .padding()
+                    
+                    
+                }
+                
             }
-            HStack{
-                Text("Output:")
-                    .foregroundColor(isShowingInputError ? .red : .black)
-                    .background {
-                        RoundedRectangle(cornerRadius: 5)
-                            .fill(Color.myBlue)
+            VStack{
+                HStack {
+                    Button {
+                        userInput.AnswerFormatter()
+                    } label: {
+                        Text("Calculate")
+                            .foregroundColor(Color.blue)
+                            .padding()
+                            .background{
+                                RoundedRectangle(cornerRadius: 5)
+                                    .fill(Color.myButton)
+                            }
+                            .padding()
                     }
-                    .padding()
-                TextField("Placeholder", text: $Output)
-                    .keyboardType(.numbersAndPunctuation)
-                    .foregroundColor(Color.red)
-                    .background {
-                        RoundedRectangle(cornerRadius: 5)
-                            .fill(Color.lightGrey)
+                    Button {
+                        userInput.StageAdded()
+                    } label: {
+                        Text("Add Stage")
+                            .foregroundColor(Color.myButton)
+                            .padding()
+                            .background{
+                                RoundedRectangle(cornerRadius: 5)
+                                    .fill(.blue)
+                            }
+                            .padding()
                     }
-                    .padding()
+                    //.disabled(userInput.StagesAdd == 3)
+                    Button {
+                        userInput.StageRemoved()
+                    } label: {
+                        Text("Remove Stage")
+                            .foregroundColor(Color.myButton)
+                            .padding()
+                            .background{
+                                RoundedRectangle(cornerRadius: 5)
+                                    .fill(.red)
+                            }
+                            .padding()
+                    }
+                    .disabled(userInput.StagesAdd == 1)
+                }
+                //on keyboard press "Return"
+                
+                HStack{
+                    Text("Answer:")
+                        .background {
+                            RoundedRectangle(cornerRadius: 5)
+                                .fill(Color.lightGrey)
+                        }
+                        .padding()
+                    Text(String(userInput.Answer))
+                        .foregroundColor(Color.red)
+                        .background {
+                            RoundedRectangle(cornerRadius: 5)
+                                .fill(Color.lightGrey)
+                        }
+                        .padding()
+                }
             }
-            Button {
-                AnswerFormatter()
-            } label: {
-                Text("Calculate")
-                    .padding()
-                    .background {
-                        RoundedRectangle(cornerRadius: 5)
-                            .fill(Color.myButton)
-                            .addBorder(Color.myBackGround, width:5, cornerRadius: 5)
-                    }
-                    .padding()
-            }
-            //on keyboard press "Return"
-            
-            HStack{
-                Text("Answer:")
-                    .background {
-                        RoundedRectangle(cornerRadius: 5)
-                            .fill(Color.lightGrey)
-                    }
-                    .padding()
-                TextField("Placeholder", text: $Answer)
-                    .keyboardType(.numberPad)
-                    .foregroundColor(Color.red)
-                    .background {
-                        RoundedRectangle(cornerRadius: 5)
-                            .fill(Color.lightGrey)
-                    }
-                    .padding()
-            }
-            
-            
         }
     }
+    
     var body: some View {
         Rectangle().fill(Color.myBackGround)
             .edgesIgnoringSafeArea(.all)

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 enum Measurements: CustomStringConvertible {
     var description: String {
@@ -107,6 +108,8 @@ enum MetDistUnits: DistUnits, CaseIterable, CustomStringConvertible {
     case km
 }
 
+//for ChainLength
+
 enum Chains: CustomStringConvertible, CaseIterable{
     var description: String{
         switch self{
@@ -125,4 +128,28 @@ enum Chains: CustomStringConvertible, CaseIterable{
     case twentyFive
     case HtwentyFive
     case thirtyFive
+}
+
+//for GearRatio
+
+enum Direction {
+    case left, right
+
+    var value: CGFloat {
+        switch self {
+        case .left:
+            return -1
+        case .right:
+            return 1
+        }
+    }
+    
+    var rotation: Bool {
+        switch self {
+        case .left:
+            return true
+        case .right:
+            return false
+        }
+    }
 }

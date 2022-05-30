@@ -7,77 +7,9 @@
 
 import SwiftUI
 
-enum Direction {
-    case left, right
 
-    var value: CGFloat {
-        switch self {
-        case .left:
-            return -1
-        case .right:
-            return 1
-        }
-    }
-    
-    var rotation: Bool {
-        switch self {
-        case .left:
-            return true
-        case .right:
-            return false
-        }
-    }
-}
 
-struct RotatingCircleView: View {
-    @State private var isRotated = false
-    let fill: Color
-    let scale: CGFloat
-    let direction: Direction
 
-    var animation: Animation {
-        Animation.linear
-            .speed(scale / 1.5)
-            .repeatForever(autoreverses: false)
-    }
-
-    var overlay: some View {
-        Rectangle()
-            .fill(.gray)
-            .frame(height: 5)
-    }
-
-    var body: some View {
-        let (upperRot, lowerRot) =  rotationDecider()
-        
-        GeometryReader { proxy in
-            Circle()
-                .fill(fill)
-                .overlay(overlay)
-                .rotationEffect(Angle.degrees(isRotated ? upperRot : lowerRot))
-                .scaleEffect(scale)
-                .offset(x: xOffset(for: proxy.size.width), y: 0)
-                .onAppear {
-                    withAnimation(animation) {
-                        isRotated.toggle()
-                    }
-                }
-        }
-    }
-
-    private func rotationDecider() -> (Double, Double) {
-        if direction == .right {
-            return(360, 0)
-        }
-        else {
-            return (0, 360)
-        }
-    }
-    
-    private func xOffset(for width: CGFloat) -> CGFloat {
-        direction.value*(width/2-(width/2*scale))
-    }
-}
 
 struct RotatingCircleView_Previews: PreviewProvider {
     static var previews: some View {
