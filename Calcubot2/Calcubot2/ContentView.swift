@@ -39,30 +39,8 @@ struct ContentView: View {
                 textColor: .myBorder,
                 backGround: .myButton
             ) {
-                GearRatio()
+                GearRatioTest()
             }
-            RoundedRectNavLink(
-                text: "Unit Conversion",
-                textColor: .myBorder,
-                backGround: .myButton
-            ) {
-                UnitConversion()
-            }
-            RoundedRectNavLink(
-                text: "Belt Centerer",
-                textColor: .myBorder,
-                backGround: .myButton
-            ) {
-                BeltCentering()
-            }
-            RoundedRectNavLink(
-                text: "Chain Length",
-                textColor: .myBorder,
-                backGround: .myButton
-            ) {
-                ChainLength()
-            }
-            
         }
     }
     
@@ -78,13 +56,6 @@ struct ContentView: View {
                             Text("icon")
                             Text("Calcubot").font(.largeTitle)
                         }
-                    }
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        NavigationLink(destination: Settings()){
-                            Image(systemName:"gearshape.fill")
-                                .foregroundColor(Color.myBorder)
-                        }
-                        
                     }
                 }
         }

@@ -132,24 +132,3 @@ enum Chains: CustomStringConvertible, CaseIterable{
 
 //for GearRatio
 
-enum Direction {
-    case left, right
-
-    var value: CGFloat {
-        switch self {
-        case .left:
-            return -1
-        case .right:
-            return 1
-        }
-    }
-    
-    var rotation: Bool {
-        switch self {
-        case .left:
-            return true
-        case .right:
-            return false
-        }
-    }
-}
