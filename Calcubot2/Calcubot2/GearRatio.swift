@@ -47,7 +47,7 @@ struct GearRatio: View {
             VStack(){
                 Text("Final Ratio Diagram")
                     .font(.title)
-                    
+                
                 Rectangle()
                     .frame(width: 350, height: 200)
                     .foregroundColor(.lightGrey)
@@ -174,7 +174,12 @@ struct GearRatio: View {
 
 struct GearRatio_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        Group {
+            
+            NavigationView {
+                GearRatio()
+            }
+            
             GearRatio()
         }
     }
