@@ -10,7 +10,7 @@ import SwiftUI
 //handles animaition offset and rotation direction
 enum Direction {
     case left, right
-
+    
     var value: CGFloat {
         switch self {
         case .left:
@@ -19,7 +19,7 @@ enum Direction {
             return 1
         }
     }
-
+    
 }
 
 //Allows for multiple instances or stages to be added or deleted
@@ -43,7 +43,7 @@ class UserInputStages: ObservableObject {
         
         for num in Input {
             prodInput = prodInput * Int(num)!
-
+            
         }
         
         var prodOutput: Int = 1
@@ -92,10 +92,10 @@ class UserInputStages: ObservableObject {
         
         self.Driving = ""
         self.Driven = ""
-
+        
         self.Answer = "Final Ratio"
     }
-
+    
 }
 
 struct GearRatioTest: View {
@@ -264,6 +264,13 @@ struct GearRatioTest: View {
 
 struct GearRatioTest_Previews: PreviewProvider {
     static var previews: some View {
-        GearRatioTest()
+        Group {
+            GearRatioTest()
+            
+            NavigationView{
+                GearRatioTest()
+            }
+            
+        }
     }
 }
