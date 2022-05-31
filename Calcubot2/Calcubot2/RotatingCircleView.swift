@@ -28,20 +28,19 @@ struct RotatingCircleView: View {
     var body: some View {
         let (upperRot, lowerRot) =  rotationDecider()
         
-        //GeometryReader { proxy in
+        GeometryReader { proxy in
             Circle()
                 .fill(fill)
                 .overlay(overlay)
                 .rotationEffect(Angle.degrees(isRotated ? upperRot : lowerRot))
                 .scaleEffect(scale)
-                .offset(x: xOffset(for: 350), y:0)
-                //.offset(x: xOffset(for: proxy.size.width), y: 0)
+                .offset(x: xOffset(for: proxy.size.width), y: 0)
                 .onAppear {
                     withAnimation(animation) {
                         isRotated.toggle()
                     }
                 }
-        //}
+        }
     }
 
     private func rotationDecider() -> (Double, Double) {
