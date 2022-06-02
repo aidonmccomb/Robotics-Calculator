@@ -21,22 +21,48 @@ class UserInputStages: ObservableObject {
     
     @Published var Answer: String
     
+    func DisplayValuesReset() {
+        self.Driven = "0.6"
+        self.Driving = "0.9"
+    }
+    
     func AnswerFormatter() {
         //ifFunctionCalled = true
         
         var prodInput: Int = 1
         
-        //needs error handling
-        
         for num in Input {
-            prodInput = prodInput * Int(num)!
-
+            if let intNum : Int = Int(num) {
+                prodInput = prodInput * intNum
+            }
+            else {
+                for index in 0 ..< Input.count {
+                    Input[index] = ""
+                }
+                for index in 0 ..< Output.count {
+                    Output[index] = ""
+                }
+                self.Driven = "0.6"
+                self.Driving = "0.9"
+            }
         }
         
         var prodOutput: Int = 1
         
         for num in Output {
-            prodOutput = prodOutput * Int(num)!
+            if let intNum : Int = Int(num) {
+                prodOutput = prodOutput * intNum
+            }
+            else {
+                for index in 0 ..< Output.count {
+                    Output[index] = ""
+                }
+                for index in 0 ..< Input.count {
+                    Input[index] = ""
+                }
+                self.Driven = "0.6"
+                self.Driving = "0.9"
+            }
         }
         
         let gcd = GCD_Calculator(a: Int(prodInput), b: Int(prodOutput))
@@ -79,10 +105,10 @@ class UserInputStages: ObservableObject {
         
         self.Driving = ""
         self.Driven = ""
-
+        
         self.Answer = "Final Ratio"
     }
-
+    
 }
 
 //for Gear Ratio
@@ -92,38 +118,37 @@ struct RotatingCircleView: View {
     let fill: Color
     let scale: CGFloat
     let direction: Direction
-
+    
     var animation: Animation {
         Animation.linear
             .speed(scale / 1.5)
             .repeatForever(autoreverses: false)
     }
-
+    
     var overlay: some View {
         Rectangle()
             .fill(.gray)
             .frame(height: 5)
     }
-
+    
     var body: some View {
         let (upperRot, lowerRot) =  rotationDecider()
         
-        //GeometryReader { proxy in
+        GeometryReader { proxy in
             Circle()
                 .fill(fill)
                 .overlay(overlay)
                 .rotationEffect(Angle.degrees(isRotated ? upperRot : lowerRot))
                 .scaleEffect(scale)
-                .offset(x: xOffset(for: 350), y:0)
-                //.offset(x: xOffset(for: proxy.size.width), y: 0)
+                .offset(x: xOffset(for: proxy.size.width), y: 0)
                 .onAppear {
                     withAnimation(animation) {
                         isRotated.toggle()
                     }
                 }
-        //}
+        }
     }
-
+    
     private func rotationDecider() -> (Double, Double) {
         if direction == .right {
             return(360, 0)

@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3FF76AE9280F34AD00A06AD9"
-               BuildableName = "Calcubot2.app"
+               BuildableName = "Calcubot.app"
                BlueprintName = "Calcubot2"
                ReferencedContainer = "container:Calcubot2.xcodeproj">
             </BuildableReference>
@@ -93,7 +93,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3FF76AE9280F34AD00A06AD9"
-            BuildableName = "Calcubot2.app"
+            BuildableName = "Calcubot.app"
             BlueprintName = "Calcubot2"
             ReferencedContainer = "container:Calcubot2.xcodeproj">
          </BuildableReference>
@@ -110,7 +110,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3FF76AE9280F34AD00A06AD9"
-            BuildableName = "Calcubot2.app"
+            BuildableName = "Calcubot.app"
             BlueprintName = "Calcubot2"
             ReferencedContainer = "container:Calcubot2.xcodeproj">
          </BuildableReference>
