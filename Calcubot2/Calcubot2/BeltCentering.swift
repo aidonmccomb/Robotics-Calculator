@@ -24,16 +24,16 @@ enum Belts: CustomStringConvertible, CaseIterable{
     case mmthree
 }
 
-
-struct BeltCentering: View {
-    @State var beltType: Belts = .mmfive
-    @State var length: String = ""
-    @State var pulleyOne: String = ""
-    @State var pulleyTwo: String = ""
-    @State var centerDist: String = "Center Distance"
+class BeltUserInput: ObservableObject{
+    @Published var beltType: Belts = .mmfive
+    @Published var length: String = ""
+    @Published var pulleyOne: String = ""
+    @Published var pulleyTwo: String = ""
+    @Published var centerDistFloat: Float = 2
+    @Published var centerDistString: String = ""
     
     func CalculateCenter() {
-        guard var L = Float(length), let D = Float(pulleyOne), let d = Float(pulleyTwo) else {
+        guard var L = Float(self.length), let D = Float(self.pulleyOne), let d = Float(self.pulleyTwo) else {
             return
         }
         
@@ -66,45 +66,80 @@ struct BeltCentering: View {
         let C = L/4 - T/8 * (P1+P2) + 1/4 * B
         
         //assigment to state var
-        centerDist = String(C)
+        self.centerDistFloat = C
         
+    }
+    
+}
+
+struct BeltCentering: View {
+   var beltInput = BeltUserInput()
+    
+    var AnimationView: some View{
+        Circle()
+            .fill(.red)
     }
     
     var overlay: some View{
         VStack{
-            Text("Metric")
-                .foregroundColor(Color.lightGrey)
+            Rectangle()
+                .frame(width: 350, height: 100)
+                .foregroundColor(.lightGrey)
+                .cornerRadius(10)
+                .overlay(AnimationView)
+            
             HStack {
                 Text("Belt Type")
-                Picker("Chain Type", selection: $beltType) {
+                    .padding()
+                    .background(.gray)
+                Picker("Chain Type", selection: $beltInput.beltType) {
                     ForEach(Belts.allCases, id: \.description) { i in
                         Text(String(i.description)).tag(i)
                     }
                 }
+                .padding()
+                .background(.gray)
             }
-            TextField("Length of Belt", text: $length)
+            VStack{
+            HStack{
+                Text("Length of Belt")
+                    .padding()
+                    .background(Color.blue)
+                TextField("Length of Belt", text: $beltInput.length)
                 .keyboardType(.numbersAndPunctuation)
                 .foregroundColor(Color.black)
                 .background {
                     RoundedRectangle(cornerRadius: 5)
                         .fill(Color.blue)
                 }
-            TextField("Tooth Count 1", text: $pulleyOne)
-                .keyboardType(.numbersAndPunctuation)
-                .foregroundColor(Color.black)
-                .background {
-                    RoundedRectangle(cornerRadius: 5)
-                        .fill(Color.orange)
-                }
-            TextField("Tooth Count 2", text: $pulleyTwo)
+            }
+            HStack {
+                Text("Tooth Count 1")
+                    .padding()
+                    .background(Color.orange)
+                TextField("Tooth Count 1", text: $beltInput.pulleyOne)
+                    .keyboardType(.numbersAndPunctuation)
+                    .foregroundColor(Color.black)
+                    .background {
+                        RoundedRectangle(cornerRadius: 5)
+                            .fill(Color.orange)
+                    }
+            }
+            HStack{
+                Text("Tooth Count 2")
+                    .padding()
+                    .background(Color.red)
+                TextField("Tooth Count 2", text: $beltInput.pulleyTwo)
                 .keyboardType(.numbersAndPunctuation)
                 .foregroundColor(Color.black)
                 .background {
                     RoundedRectangle(cornerRadius: 5)
                         .fill(Color.red)
                 }
+            }
+            }.padding()
             Button {
-                CalculateCenter()
+                beltInput.CalculateCenter()
             } label: {
                 Text("Calculate")
                     .padding()
@@ -113,9 +148,17 @@ struct BeltCentering: View {
                             .fill(Color.myButton)
                             .addBorder(Color.myBackGround, width:5, cornerRadius: 5)
                     }
-                    .padding()
             }
-            Text(String(centerDist))
+            HStack{
+                Text("Center Distance")
+                    .padding()
+                    .background(Color.pink)
+                Text(String(self.centerDistFloat))
+                    .padding()
+                    .background(Color.pink)
+                    
+            }.padding()
+            
         }
     }
     
