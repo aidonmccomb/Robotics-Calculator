@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "AppIcon-iPad20@2x.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "20x20"
@@ -76,16 +77,19 @@
       "size" : "76x76"
     },
     {
+      "filename" : "AppIcon-iPad76@2x.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "76x76"
     },
     {
+      "filename" : "AppIcon-iPad83.5.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "83.5x83.5"
     },
     {
+      "filename" : "AppIcon-iPhone40@2x.png",
       "idiom" : "ios-marketing",
       "scale" : "1x",
       "size" : "1024x1024"

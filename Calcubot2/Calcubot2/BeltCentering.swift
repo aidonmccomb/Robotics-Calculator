@@ -11,7 +11,7 @@ enum Belts: CustomStringConvertible, CaseIterable{
     var description: String{
         switch self{
         case .mmfive : return "5 mil"
-        case .mmthree : return "10 mil"
+        case .mmthree : return "3 mil"
         }
     }
     var pitch: Float{
@@ -24,13 +24,31 @@ enum Belts: CustomStringConvertible, CaseIterable{
     case mmthree
 }
 
+struct SizedPulleyView: View{
+    var p1Color: Color
+    var p1Teeth: Int
+    var p2Color: Color
+    var p2Teeth: Int
+    
+    var centerDist: Float
+    
+    
+    
+    var body: some View{
+        Circle()
+            .fill(p1Color)
+        Circle()
+            .fill(p2Color)
+    }
+    
+}
+
 class BeltUserInput: ObservableObject{
     @Published var beltType: Belts = .mmfive
     @Published var length: String = ""
     @Published var pulleyOne: String = ""
     @Published var pulleyTwo: String = ""
-    @Published var centerDistFloat: Float = 2
-    @Published var centerDistString: String = ""
+    @Published var centerDist: String = ""
     
     func CalculateCenter() {
         guard var L = Float(self.length), let D = Float(self.pulleyOne), let d = Float(self.pulleyTwo) else {
@@ -66,19 +84,36 @@ class BeltUserInput: ObservableObject{
         let C = L/4 - T/8 * (P1+P2) + 1/4 * B
         
         //assigment to state var
-        self.centerDistFloat = C
+        self.centerDist = String(C)
         
     }
     
 }
 
 struct BeltCentering: View {
-   var beltInput = BeltUserInput()
+   @ObservedObject var beltInput = BeltUserInput()
     
-    var AnimationView: some View{
-        Circle()
-            .fill(.red)
-    }
+//    var AnimationView: some View {
+//        guard let p1 = Int(beltInput.pulleyOne),
+//        let p2 = Int(beltInput.pulleyTwo),
+//              let cd = Float(beltInput.centerDist) {
+//                  let total: Int = p1 + p2
+//                  let scaleP1: Float = p1 / total
+//                  let scaleP2: Float = p2/ total
+//
+//                  var x, y : Float
+//
+//                  if
+//              }
+//        else {
+//            return (0.3, 0.7)
+//        }
+//
+//
+//        return HStack{
+//            Circle()
+//        }
+//    }
     
     var overlay: some View{
         VStack{
@@ -86,7 +121,7 @@ struct BeltCentering: View {
                 .frame(width: 350, height: 100)
                 .foregroundColor(.lightGrey)
                 .cornerRadius(10)
-                .overlay(AnimationView)
+                //.overlay(AnimationView)
             
             HStack {
                 Text("Belt Type")
@@ -153,7 +188,7 @@ struct BeltCentering: View {
                 Text("Center Distance")
                     .padding()
                     .background(Color.pink)
-                Text(String(self.centerDistFloat))
+                Text(String(beltInput.centerDist))
                     .padding()
                     .background(Color.pink)
                     

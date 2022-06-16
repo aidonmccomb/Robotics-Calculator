@@ -142,8 +142,10 @@ struct RotatingCircleView: View {
                 .scaleEffect(scale)
                 .offset(x: xOffset(for: proxy.size.width), y: 0)
                 .onAppear {
-                    withAnimation(animation) {
-                        isRotated.toggle()
+                    DispatchQueue.main.async {
+                        withAnimation(animation) {
+                            isRotated.toggle()
+                        }
                     }
                 }
         }
